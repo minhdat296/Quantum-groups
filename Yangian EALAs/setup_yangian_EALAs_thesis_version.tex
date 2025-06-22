@@ -1,0 +1,61 @@
+\section{Setups}
+    Again, $\g$ is a finite-dimensional simple Lie algebra over $\bbC$. It is accompanied by all the data listed in subsection \ref{subsection: finite_dimensional_simple_lie_algebras}. 
+
+    \subsection{Conventions for toroidal Lie algebras} \label{subsection: toroidal_lie_algebra_conventions}
+        For our own convenience, we will also be adopting the following abbreviation:
+            $$A := \bbC[v^{\pm 1}, t^{\pm 1}]$$
+            $$\g_{[2]} := \g \tensor_{\bbC} A$$
+        $\g_{[2]}$ as above is to be understood as a current algebra in the sense of definition \ref{def: current_algebras}.
+    
+        We will then be interested in the Lie algebra:
+            $$\toroidal := \uce(\g_{[2]})$$
+        which, respectively, shall be referred to as the \textbf{toroidal Lie algebra} associated to $\g$. In example \ref{example: toroidal_lie_algebras_centres}, the structures of the underlying ($\Z^2$-graded) vector spaces of these Lie algebras have already been described, and we refer the reader there for the details (in particular, the construction of a canonical basis for the underlying vector spaces of their centres). We will also be referring to the centre:
+            $$\z(\toroidal)$$
+        as the \textbf{toroidal centre}, for brevity; recall also, from theorem \ref{theorem: kassel_realisation}, that as vector spaces (and tautologically, also as abelian Lie algebras), this is isomorphic to $\bar{\Omega}^1_{A/\bbC} := \Omega^1_{A/\bbC}/d(A)$ so in particular, it is spanned by elements of the form $g \bar{d}f$ for $f, g \in A$ (cf. convention \ref{conv: cyclic_1_forms}).
+
+        We shall be writing:
+            $$\z(\toroidal)^{\star}$$
+        to mean the graded-dual of $\z(\toroidal)$ with respect to its $\Z^2$-grading as in example \ref{example: toroidal_lie_algebras_centres}. If for each $\alpha \in \Z^2$ we denote the corresponding graded component by $\z(\toroidal)_{\alpha}$, then by definition, this is given by:
+            $$\z(\toroidal)^{\star} := \bigoplus_{\alpha \in \Z^2} \z(\toroidal)_{\alpha}^*$$
+        We note that this is a vector subspace of the full linear dual $\z(\toroidal)^*$.
+
+        Finally, let us write:
+            $$\der(A)$$
+        as opposed to $\Der_{\bbC}(A)$ for the vector space (or for that matter, $A$-module) of $\bbC$-derivations from $A$ to itself. This notation is to be suggestive of the fact that there is a natural Lie algebra structure on $\der(A)$, given by the usual commutator bracket:
+            $$[D, D'] := DD' - D'D$$
+        (given for all $D, D' \in \der(A)$).
+    
+    \subsection{Definition of \texorpdfstring{$\gamma$}{}-extended toroidal Lie algebras} \label{subsection: definition_of_yangian_extended_toroidal_lie_algebras}
+        \begin{convention}[\say{The} residue form]
+            Throughout, let:
+                $$\gamma: A \to \bbC$$
+            be the linear map given by:
+                $$\gamma(f) := -\Res(v^{-1} f)$$
+            where by $\Res$, we mean the formal residue at $(v, t) = (0, 0)$, i.e. the coefficients of the monomial of degree $(-1, -1)$ with respect to the standard $\Z^2$-grading on $A$ in the linear expansion of $v^{-1} f$ in terms of the standard basis $\{v^m t^p\}_{(m, p) \in \Z^2}$ of $A$. 
+        \end{convention}
+        
+        Using this, we can construct an \textit{invariant}\footnote{Due to the bilinear form $(-, -)_{\g}$ on $\g$ being invariant (cf. subsection \ref{subsection: finite_dimensional_simple_lie_algebras}).} and \textit{non-degenerate} symmetric bilinear form on $\g_{[2]}$, given as follows:
+            $$(xf, yg)_{\g_{[2]}} := (x, y)_{\g} \gamma(fg)$$
+        for all $x, y \in \g$ and all $f, g \in A$, and let us remind the reader that we abbreviate the pure tensors by:
+            $$xf := x \tensor f$$
+        for all $x \in \g$ and $f \in A$. Because $\g_{[2]}$ is a perfect Lie algebra, it admits a UCE (namely $\toroidal$), which is perfect \textit{a priori} according to corollary \ref{coro: UCEs_are_perfect}. As such, per lemma \ref{lemma: extending_bilinear_forms_to_central_extensions}, there is a unique extension:
+            $$(-, -)_{\toroidal}$$
+        of $(-, -)_{\g_{[2]}}$ to $\toroidal$, and we recall from \textit{loc. cit.} that any such extension is necessarily invariant with respect to the Lie algebra structure on $\toroidal$, since $(-, -)_{\g_{[2]}}$ is invariant. Moreover, any such extension of $(-, -)_{\g_{[2]}}$ to a central extension of $\g_{[2]}$ is necessarily degenerate. In the case of the UCE $\toroidal$, because $(-, -)_{\g_{[2]}}$ is furthermore \textit{non-degenerate}, the radical of the extended bilinear form $(-, -)_{\toroidal}$ is:
+            $$\Rad(-, -)_{\toroidal} := \{ K \in \toroidal \mid \forall X \in \toroidal (K, X)_{\toroidal} = 0 \} = \z(\toroidal)$$
+            
+        To fix this degeneracy of $(-, -)_{\toroidal}$, let us construct a \textit{non-degenerate} extension thereof to the vector space $\extendedtoroidal := \toroidal \oplus \z(\toroidal)^{\star}$.
+        \begin{lemma}[A non-degenerate bilinear form extending $(-, -)_{\toroidal}$] \label{lemma: extended_toroidal_bilinear_form}
+            On the vector space $\toroidal \oplus \z(\toroidal)^{\star}$, there is a non-degenerate and symmetric bilinear form $(-, -)_{\toroidal \oplus \z(\toroidal)^{\star}}$ given by:
+                $$( X + D, Y + D' )_{\toroidal \oplus \z(\toroidal)^{\star}} := (X, Y)_{\toroidal} + D'( \pi_{\z(\toroidal)}(X) ) + D( \pi_{\z(\toroidal)}(Y) )$$
+            for all $X, Y \in \toroidal$ and all $D, D' \in \divzero$, extending the bilinear form $(-, -)_{\toroidal}$ on $\toroidal$. Here, $\pi_{\z(\toroidal)}: \toroidal \to \z(\toroidal)$ denotes the canonical projection.
+        \end{lemma}
+
+        The construction of primary interest to us is the following:
+        \begin{definition}[$\gamma$-extended toroidal Lie algebras] \label{def: yangian_extended_toroidal_lie_algebras}
+            A Lie algebra $(\extendedtoroidal, [-, -]_{\extendedtoroidal})$ is said to be a \textbf{$\gamma$-extended toroidal Lie algebra} if and only if the following conditions are simultaneously satisfied:
+            \begin{itemize}
+                \item there is an isomorphism of vector spaces $\mu: \extendedtoroidal \xrightarrow[]{\cong} \toroidal \oplus \z(\toroidal)^{\star}$;
+                \item the canonical inclusion of vector spaces $\iota_{\toroidal}: \toroidal \hookrightarrow \toroidal \oplus \z(\toroidal)^{\star}$ induces a Lie algebra monomorphism $\iota_{\toroidal} \circ \mu^{-1}: \toroidal \hookrightarrow \extendedtoroidal$;
+                \item the non-degenerate symmetric bilinear form $(-, -)_{\extendedtoroidal} := (-, -)_{\toroidal \oplus \z(\toroidal)^{\star}} \circ \mu^{\tensor 2}$ is \textit{invariant} with respect to the Lie bracket $[-, -]_{\extendedtoroidal}$.
+            \end{itemize}
+        \end{definition}

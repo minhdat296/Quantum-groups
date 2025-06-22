@@ -1,0 +1,754 @@
+\renewcommand{\implies}{\Rightarrow}
+\renewcommand{\cong}{\simeq}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\ladjoint}{\dashv}
+\newcommand{\radjoint}{\vdash}
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+\newcommand\bra[2][]{#1\langle {#2} #1\rvert}
+\newcommand\ket[2][]{#1\lvert {#2} #1\rangle}
+\newcommand\abs[2][]{#1\left\lvert {#2} #1\right\rvert}
+\newcommand\norm[2][]{#1\left\| {#2} #1\right\|}
+\newcommand\order[2][]{#1\: \mathbf{:} \: {#2} #1 \: \mathbf{:} \:}
+\newcommand{\ndiv}{\hspace{-2pt}\not|\hspace{5pt}}
+\newcommand{\cond}{\blacktriangle}
+\newcommand{\decond}{\triangle}
+\newcommand{\solid}{\blacksquare}
+\newcommand{\ot}{\leftarrow}
+\renewcommand{\-}{\text{-}}
+\renewcommand{\mapsto}{\leadsto}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\setminus}{\smallsetminus}
+\newcommand{\punc}{\overset{\circ}}
+\renewcommand{\div}{\operatorname{div}}
+\newcommand{\grad}{\operatorname{grad}}
+\newcommand{\curl}{\operatorname{curl}}
+\makeatletter
+\DeclareRobustCommand{\cev}[1]{%
+  {\mathpalette\do@cev{#1}}%
+}
+\newcommand{\do@cev}[2]{%
+  \vbox{\offinterlineskip
+    \sbox\z@{$\m@th#1 x$}%
+    \ialign{##\cr
+      \hidewidth\reflectbox{$\m@th#1\vec{}\mkern4mu$}\hidewidth\cr
+      \noalign{\kern-\ht\z@}
+      $\m@th#1#2$\cr
+    }%
+  }%
+}
+\makeatother
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbK}{\mathbb{K}}
+\NewDocumentCommand{\x}{e{_^}}{%
+  \mathbin{\mathop{\times}\displaylimits
+    \IfValueT{#1}{_{#1}}
+    \IfValueT{#2}{^{#2}}
+  }%
+}
+\NewDocumentCommand{\pushout}{e{_^}}{%
+  \mathbin{\mathop{\sqcup}\displaylimits
+    \IfValueT{#1}{_{#1}}
+    \IfValueT{#2}{^{#2}}
+  }%
+}
+\newcommand{\simpleroots}{\mathsf{\Delta}}
+\newcommand{\rootsystem}{\mathsf{\Phi}}
+\newcommand{\rootlattice}{\mathsf{Q}}
+\newcommand{\weight}{\mathsf{\Pi}}
+\newcommand{\weightlattice}{\mathsf{\Lambda}}
+\newcommand{\Weylgroup}{\mathsf{W}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\domain}{\operatorname{dom}}
+\newcommand{\codomain}{\operatorname{codom}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\coim}{\operatorname{coim}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\chara}{\operatorname{char}}
+\newcommand{\trdeg}{\operatorname{trdeg}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\trace}{\operatorname{tr}}
+\newcommand{\qdet}{\operatorname{qdet}}
+\newcommand{\sklyanindet}{\operatorname{sdet}} %sklyanin determinant
+\newcommand{\quasidet}{\operatorname{quasidet}}
+\newcommand{\pfaff}{\operatorname{Pf}} %pfaffian
+\newcommand{\qpfaff}{\operatorname{qPf}} %quantum pfaffian
+\newcommand{\sklyaninpfaff}{\operatorname{sPf}} %twisted quantum pfaffian
+\newcommand{\length}{\operatorname{length}}
+\newcommand{\height}{\operatorname{ht}}
+\renewcommand{\span}{\operatorname{span}}
+\newcommand{\e}{\epsilon}
+\newcommand{\p}{\mathfrak{p}}
+\newcommand{\q}{\mathfrak{q}}
+\newcommand{\m}{\mathfrak{m}}
+\newcommand{\n}{\mathfrak{n}}
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\calG}{\mathcal{G}}
+\newcommand{\calO}{\mathcal{O}}
+\newcommand{\F}{\mathbb{F}}
+\DeclareMathOperator{\lcm}{lcm}
+\newcommand{\gr}{\operatorname{gr}}
+\newcommand{\vol}{\mathrm{vol}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\projdim}{\operatorname{proj.dim}}
+\newcommand{\injdim}{\operatorname{inj.dim}}
+\newcommand{\flatdim}{\operatorname{flat.dim}}
+\newcommand{\globdim}{\operatorname{glob.dim}}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\coad}{\operatorname{coad}}
+\newcommand{\ch}{\operatorname{ch}} %characters of representations
+\newcommand{\dist}{\operatorname{dist}} %distance
+
+\newcommand{\Ad}{\mathrm{Ad}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\PGL}{\mathrm{PGL}}
+\newcommand{\PSL}{\mathrm{PSL}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\GSp}{\mathrm{GSp}}
+\newcommand{\GSpin}{\mathrm{GSpin}}
+\newcommand{\rmO}{\mathrm{O}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\rmU}{\mathrm{U}}
+\newcommand{\rmH}{\mathrm{H}}
+\newcommand{\rmY}{\mathrm{Y}} %yangian
+\newcommand{\rmX}{\mathrm{X}} %extended yangian
+\newcommand{\rmu}{\mathrm{u}}
+\newcommand{\rmV}{\mathrm{V}}
+\newcommand{\gl}{\mathfrak{gl}}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\diag}{\mathfrak{diag}}
+\newcommand{\pgl}{\mathfrak{pgl}}
+\newcommand{\psl}{\mathfrak{psl}}
+\newcommand{\fraksp}{\mathfrak{sp}}
+\newcommand{\gsp}{\mathfrak{gsp}}
+\newcommand{\gspin}{\mathfrak{gspin}}
+\newcommand{\frako}{\mathfrak{o}}
+\newcommand{\so}{\mathfrak{so}}
+\newcommand{\su}{\mathfrak{su}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Spf}{\operatorname{Spf}}
+\newcommand{\Spm}{\operatorname{Spm}}
+\newcommand{\Spv}{\operatorname{Spv}}
+\newcommand{\Spa}{\operatorname{Spa}}
+\newcommand{\Spd}{\operatorname{Spd}}
+\newcommand{\Proj}{\operatorname{Proj}}
+\newcommand{\Gr}{\mathrm{Gr}}
+\newcommand{\Hecke}{\mathrm{Hecke}}
+\newcommand{\Sht}{\mathrm{Sht}}
+\newcommand{\Quot}{\mathrm{Quot}}
+\newcommand{\Hilb}{\mathrm{Hilb}}
+\newcommand{\Pic}{\mathrm{Pic}}
+\newcommand{\Div}{\mathrm{Div}}
+\newcommand{\Jac}{\mathrm{Jac}}
+\newcommand{\Alb}{\mathrm{Alb}} %albanese variety
+\newcommand{\Bun}{\mathrm{Bun}}
+\newcommand{\loopspace}{\mathbf{\Omega}}
+\newcommand{\suspension}{\mathbf{\Sigma}}
+\newcommand{\tangent}{\mathrm{T}} %tangent space
+\newcommand{\Eig}{\mathrm{Eig}}
+\newcommand{\Cox}{\mathrm{Cox}} %coxeter functors
+\newcommand{\rmK}{\mathrm{K}} %Killing form
+\newcommand{\km}{\mathfrak{km}} %kac-moody algebras
+\newcommand{\Dyn}{\mathrm{Dyn}} %associated Dynkin quivers
+\newcommand{\Car}{\mathrm{Car}} %cartan matrices of finite quivers
+\newcommand{\uce}{\mathfrak{uce}} %universal central extension of lie algebras
+
+\newcommand{\Ring}{\mathrm{Ring}}
+\newcommand{\Cring}{\mathrm{CRing}}
+\newcommand{\Bool}{\mathrm{Bool}} %boolean algebras
+\newcommand{\Alg}{\mathrm{Alg}}
+\newcommand{\Leib}{\mathrm{Leib}} %leibniz algebras
+\newcommand{\Fld}{\mathrm{Fld}}
+\newcommand{\Sets}{\mathrm{Sets}}
+\newcommand{\Equiv}{\mathrm{Equiv}} %equivalence relations
+\newcommand{\Cat}{\mathrm{Cat}}
+\newcommand{\Grp}{\mathrm{Grp}}
+\newcommand{\Ab}{\mathrm{Ab}}
+\newcommand{\Sch}{\mathrm{Sch}}
+\newcommand{\Coh}{\mathrm{Coh}}
+\newcommand{\QCoh}{\mathrm{QCoh}}
+\newcommand{\Perf}{\mathrm{Perf}} %perfect complexes
+\newcommand{\Sing}{\mathrm{Sing}} %singularity categories
+\newcommand{\Desc}{\mathrm{Desc}}
+\newcommand{\Sh}{\mathrm{Sh}}
+\newcommand{\Psh}{\mathrm{PSh}}
+\newcommand{\Fib}{\mathrm{Fib}}
+\renewcommand{\mod}{\-\mathrm{mod}}
+\newcommand{\comod}{\-\mathrm{comod}}
+\newcommand{\bimod}{\-\mathrm{bimod}}
+\newcommand{\Vect}{\mathrm{Vect}}
+\newcommand{\Rep}{\mathrm{Rep}}
+\newcommand{\Grpd}{\mathrm{Grpd}}
+\newcommand{\Arr}{\mathrm{Arr}}
+\newcommand{\Esp}{\mathrm{Esp}}
+\newcommand{\Ob}{\mathrm{Ob}}
+\newcommand{\Mor}{\mathrm{Mor}}
+\newcommand{\Mfd}{\mathrm{Mfd}}
+\newcommand{\Riem}{\mathrm{Riem}}
+\newcommand{\RS}{\mathrm{RS}}
+\newcommand{\LRS}{\mathrm{LRS}}
+\newcommand{\TRS}{\mathrm{TRS}}
+\newcommand{\TLRS}{\mathrm{TLRS}}
+\newcommand{\LVRS}{\mathrm{LVRS}}
+\newcommand{\LBRS}{\mathrm{LBRS}}
+\newcommand{\Spc}{\mathrm{Spc}}
+\newcommand{\Top}{\mathrm{Top}}
+\newcommand{\Topos}{\mathrm{Topos}}
+\newcommand{\Nil}{\operatorname{Nil}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Stk}{\mathrm{Stk}}
+\newcommand{\Pre}{\mathrm{Pre}}
+\newcommand{\simp}{\mathbf{\Delta}}
+\newcommand{\Res}{\mathrm{Res}}
+\newcommand{\Ind}{\mathrm{Ind}}
+\newcommand{\Pro}{\mathrm{Pro}}
+\newcommand{\Mon}{\mathrm{Mon}}
+\newcommand{\Comm}{\mathrm{Comm}}
+\newcommand{\Fin}{\mathrm{Fin}}
+\newcommand{\Assoc}{\mathrm{Assoc}}
+\newcommand{\Semi}{\mathrm{Semi}}
+\newcommand{\Co}{\mathrm{Co}}
+\newcommand{\Loc}{\mathrm{Loc}}
+\newcommand{\Ringed}{\mathrm{Ringed}}
+\newcommand{\Haus}{\mathrm{Haus}} %hausdorff spaces
+\newcommand{\Comp}{\mathrm{Comp}} %compact hausdorff spaces
+\newcommand{\Stone}{\mathrm{Stone}} %stone spaces
+\newcommand{\Extr}{\mathrm{Extr}} %extremely disconnected spaces
+\newcommand{\Ouv}{\mathrm{Ouv}}
+\newcommand{\Str}{\mathrm{Str}}
+\newcommand{\Func}{\mathrm{Func}}
+\newcommand{\Crys}{\mathrm{Crys}}
+\newcommand{\LocSys}{\mathrm{LocSys}}
+\newcommand{\Sieves}{\mathrm{Sieves}}
+\newcommand{\pt}{\mathrm{pt}}
+\newcommand{\Graphs}{\mathrm{Graphs}}
+\newcommand{\Lie}{\mathrm{Lie}}
+\newcommand{\Env}{\mathrm{Env}}
+\newcommand{\Ho}{\mathrm{Ho}}
+\newcommand{\rmD}{\mathrm{D}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Frames}{\mathrm{Frames}}
+\newcommand{\Locales}{\mathrm{Locales}}
+\newcommand{\Span}{\mathrm{Span}}
+\newcommand{\Corr}{\mathrm{Corr}}
+\newcommand{\Monad}{\mathrm{Monad}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\sfN}{\mathrm{N}} %nerve
+\newcommand{\Diam}{\mathrm{Diam}} %diamonds
+\newcommand{\co}{\mathrm{co}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\bi}{\mathrm{bi}}
+\newcommand{\Nat}{\mathrm{Nat}}
+\newcommand{\Hopf}{\mathrm{Hopf}}
+\newcommand{\Dmod}{\mathrm{D}\mod}
+\newcommand{\Perv}{\mathrm{Perv}}
+\newcommand{\Sph}{\mathrm{Sph}}
+\newcommand{\Moduli}{\mathrm{Moduli}}
+\newcommand{\Pseudo}{\mathrm{Pseudo}}
+\newcommand{\Lax}{\mathrm{Lax}}
+\newcommand{\Strict}{\mathrm{Strict}}
+\newcommand{\Opd}{\mathrm{Opd}} %operads
+\newcommand{\Shv}{\mathrm{Shv}}
+\newcommand{\Char}{\mathrm{Char}} %CharShv = character sheaves
+\newcommand{\Huber}{\mathrm{Huber}}
+\newcommand{\Tate}{\mathrm{Tate}}
+\newcommand{\Affd}{\mathrm{Affd}} %affinoid algebras
+\newcommand{\Adic}{\mathrm{Adic}} %adic spaces
+\newcommand{\Rig}{\mathrm{Rig}}
+\newcommand{\An}{\mathrm{An}}
+\newcommand{\Perfd}{\mathrm{Perfd}} %perfectoid spaces
+\newcommand{\Sub}{\mathrm{Sub}} %subobjects
+\newcommand{\Ideals}{\mathrm{Ideals}}
+\newcommand{\Isoc}{\mathrm{Isoc}} %isocrystals
+\newcommand{\Ban}{\mathrm{Ban}} %Banach spaces
+\newcommand{\Fre}{\mathrm{Fr\acute{e}}} %Frechet spaces
+\newcommand{\Ch}{\mathrm{Ch}} %chain complexes
+\newcommand{\Pure}{\mathrm{Pure}}
+\newcommand{\Mixed}{\mathrm{Mixed}}
+\newcommand{\Hodge}{\mathrm{Hodge}} %Hodge structures
+\newcommand{\Mot}{\mathrm{Mot}} %motives
+\newcommand{\KL}{\mathrm{KL}} %category of Kazhdan-Lusztig modules
+\newcommand{\Pres}{\mathrm{Pr}} %presentable categories
+\newcommand{\Noohi}{\mathrm{Noohi}} %category of Noohi groups
+\newcommand{\Inf}{\mathrm{Inf}}
+\newcommand{\LPar}{\mathrm{LPar}} %Langlands parameters
+\newcommand{\ORig}{\mathrm{ORig}} %overconvergent sites
+\newcommand{\Quiv}{\mathrm{Quiv}} %quivers
+\newcommand{\Def}{\mathrm{Def}} %deformation functors
+\newcommand{\Higgs}{\mathrm{Higgs}}
+\newcommand{\BGG}{\mathrm{BGG}}
+\newcommand{\Poiss}{\mathrm{Poiss}}
+\newcommand{\Fact}{\mathrm{Fact}} %factorisation
+\newcommand{\Chr}{\mathrm{Chr}} %chiral
+\newcommand{\Smooth}{\mathrm{Sm}}
+
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Inn}{\operatorname{Inn}}
+\newcommand{\Out}{\operatorname{Out}}
+\newcommand{\der}{\mathfrak{der}} %derivations on Lie algebras
+\newcommand{\frakend}{\mathfrak{end}}
+\newcommand{\aut}{\mathfrak{aut}}
+\newcommand{\inn}{\mathfrak{inn}} %inner derivations
+\newcommand{\out}{\mathfrak{out}} %outer derivations
+\newcommand{\Stab}{\operatorname{Stab}}
+\newcommand{\Cent}{\operatorname{Cent}}
+\newcommand{\Norm}{\operatorname{Norm}}
+\newcommand{\Core}{\operatorname{Core}}
+\newcommand{\cent}{\mathfrak{cent}}
+\newcommand{\core}{\mathfrak{core}}
+\newcommand{\Transporter}{\operatorname{Transp}} %transporter between two subsets of a group
+\newcommand{\Conj}{\operatorname{Conj}}
+\newcommand{\Diag}{\operatorname{Diag}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\bfG}{\mathbf{G}} %absolute Galois group
+\newcommand{\Frac}{\operatorname{Frac}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\Val}{\operatorname{Val}}
+\newcommand{\Chow}{\operatorname{Chow}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Mat}{\operatorname{Mat}}
+\newcommand{\Diff}{\operatorname{Diff}}
+\newcommand{\Autom}{\operatorname{Autom}}
+\newcommand{\Artin}{\operatorname{Artin}} %artin maps
+\newcommand{\sk}{\operatorname{sk}} %skeleton of a category
+\newcommand{\eqv}{\operatorname{eqv}} %functor that maps groups $G$ to $G$-sets
+\newcommand{\Inert}{\operatorname{Inert}}
+\newcommand{\Fil}{\operatorname{Fil}}
+\newcommand{\prim}{\mathfrak{prim}}
+\newcommand{\Nerve}{\operatorname{N}}
+\newcommand{\Hol}{\operatorname{Hol}} %holomorphic functions %holonomy groups
+\newcommand{\Bi}{\operatorname{Bi}} %Bi for biholomorphic functions
+\newcommand{\chev}{\operatorname{chev}}
+\newcommand{\bfLie}{\mathbf{Lie}} %non-reduced lie algebra associated to generalised cartan matrices
+\newcommand{\frakLie}{\mathfrak{Lie}} %reduced lie algebra associated to generalised cartan matrices
+\newcommand{\frakChev}{\mathfrak{Chev}} 
+\newcommand{\Rees}{\operatorname{Rees}}
+\newcommand{\Dr}{\operatorname{Dr}} %Drinfeld's quantum double 
+\newcommand{\frakDr}{\mathfrak{Dr}} %classical double of lie bialgebras
+\newcommand{\Tot}{\operatorname{Tot}} %total complexes
+
+\renewcommand{\projlim}{\varprojlim}
+\newcommand{\indlim}{\varinjlim}
+%\newcommand{\colim}{\operatorname{colim}}
+%\renewcommand{\lim}{\operatorname{lim}}
+\newcommand{\toto}{\rightrightarrows}
+%\newcommand{\tensor}{\otimes}
+\NewDocumentCommand{\tensor}{e{_^}}{%
+  \mathbin{\mathop{\otimes}\displaylimits
+    \IfValueT{#1}{_{#1}}
+    \IfValueT{#2}{^{#2}}
+  }%
+}
+\NewDocumentCommand{\singtensor}{e{_^}}{%
+  \mathbin{\mathop{\odot}\displaylimits
+    \IfValueT{#1}{_{#1}}
+    \IfValueT{#2}{^{#2}}
+  }%
+}
+\NewDocumentCommand{\hattensor}{e{_^}}{%
+  \mathbin{\mathop{\hat{\otimes}}\displaylimits
+    \IfValueT{#1}{_{#1}}
+    \IfValueT{#2}{^{#2}}
+  }%
+}
+\NewDocumentCommand{\brevetensor}{e{_^}}{%
+  \mathbin{\mathop{\breve{\otimes}}\displaylimits
+    \IfValueT{#1}{_{#1}}
+    \IfValueT{#2}{^{#2}}
+  }%
+}
+\NewDocumentCommand{\semidirect}{e{_^}}{%
+  \mathbin{\mathop{\rtimes}\displaylimits
+    \IfValueT{#1}{_{#1}}
+    \IfValueT{#2}{^{#2}}
+  }%
+}
+\newcommand{\eq}{\operatorname{eq}}
+\newcommand{\coeq}{\operatorname{coeq}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Bil}{\operatorname{Bil}} %bilinear maps
+\newcommand{\Maps}{\operatorname{Maps}}
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\Ext}{\operatorname{Ext}}
+\newcommand{\Isom}{\operatorname{Isom}}
+\newcommand{\stalk}{\operatorname{stalk}}
+\newcommand{\RKE}{\operatorname{RKE}}
+\newcommand{\LKE}{\operatorname{LKE}}
+\newcommand{\oblv}{\operatorname{oblv}}
+\newcommand{\const}{\operatorname{const}}
+\newcommand{\free}{\operatorname{free}}
+\newcommand{\adrep}{\operatorname{ad}} %adjoint representation
+\newcommand{\NL}{\mathbb{NL}} %naive cotangent complex
+\newcommand{\pr}{\operatorname{pr}}
+\newcommand{\Der}{\operatorname{Der}}
+\newcommand{\Frob}{\operatorname{Fr}} %Frobenius
+\newcommand{\frob}{\operatorname{f}} %trace of Frobenius
+\newcommand{\bfpt}{\mathbf{pt}}
+\newcommand{\bfloc}{\mathbf{loc}}
+\DeclareMathAlphabet{\mymathbb}{U}{BOONDOX-ds}{m}{n}
+\newcommand{\0}{\mymathbb{0}}
+\newcommand{\1}{\mathbbm{1}}
+\newcommand{\2}{\mathbbm{2}}
+\newcommand{\Jet}{\operatorname{Jet}}
+\newcommand{\Split}{\mathrm{Split}}
+\newcommand{\Sq}{\mathrm{Sq}}
+\newcommand{\Zero}{\mathrm{Z}}
+\newcommand{\SqZ}{\Sq\Zero}
+\newcommand{\lie}{\mathfrak{lie}}
+\newcommand{\y}{\operatorname{y}} %yoneda
+\newcommand{\Sm}{\mathrm{Sm}}
+\newcommand{\AJ}{\phi} %abel-jacobi map
+\newcommand{\act}{\mathrm{act}}
+\newcommand{\ram}{\mathrm{ram}} %ramification index
+\newcommand{\inv}{\mathrm{inv}}
+\newcommand{\Spr}{\mathrm{Spr}} %the Springer map/sheaf
+\newcommand{\Refl}{\mathrm{Refl}} %reflection functor]
+\newcommand{\HH}{\mathrm{HH}} %Hochschild (co)homology
+\newcommand{\HC}{\mathrm{HC}} %cyclic (co)homology
+\newcommand{\Poinc}{\mathrm{Poinc}}
+\newcommand{\Simpson}{\mathrm{Simpson}}
+\newcommand{\Section}{\operatorname{Sect}}
+\newcommand{\Ran}{\operatorname{Ran}} %Ran space
+\newcommand{\quantumfields}{\operatorname{QFld}}
+
+\newcommand{\bbU}{\mathbb{U}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\W}{\mathbb{W}}
+\newcommand{\calU}{\mathcal{U}}
+\newcommand{\calW}{\mathcal{W}}
+\newcommand{\rmI}{\mathrm{I}} %augmentation ideal
+\newcommand{\bfV}{\mathbf{V}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\scrD}{\mathscr{D}}
+\newcommand{\T}{\mathscr{T}} %Tate modules
+\newcommand{\calM}{\mathcal{M}}
+\newcommand{\calN}{\mathcal{N}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calQ}{\mathcal{Q}}
+\newcommand{\A}{\mathbb{A}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\scrL}{\mathscr{L}}
+\newcommand{\E}{\mathcal{E}}
+\renewcommand{\H}{\mathbf{H}}
+\newcommand{\scrS}{\mathscr{S}}
+\newcommand{\calX}{\mathcal{X}}
+\newcommand{\calY}{\mathcal{Y}}
+\newcommand{\calZ}{\mathcal{Z}}
+\newcommand{\calS}{\mathcal{S}}
+\newcommand{\calR}{\mathcal{R}}
+\newcommand{\calr}{\mathcal{r}}
+\newcommand{\scrX}{\mathscr{X}}
+\newcommand{\scrY}{\mathscr{Y}}
+\newcommand{\scrZ}{\mathscr{Z}}
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calB}{\mathcal{B}}
+\renewcommand{\S}{\mathcal{S}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\bbD}{\mathbb{D}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\horn}{\mathbf{\Lambda}}
+\renewcommand{\L}{\mathbb{L}}
+\renewcommand{\a}{\mathfrak{a}}
+\renewcommand{\b}{\mathfrak{b}}
+\renewcommand{\c}{\mathfrak{c}}
+\renewcommand{\d}{\mathfrak{d}}
+\renewcommand{\t}{\mathfrak{t}}
+\renewcommand{\r}{\mathfrak{r}}
+\renewcommand{\o}{\mathfrak{o}}
+\renewcommand{\sp}{\mathfrak{sp}}
+\newcommand{\fraku}{\mathfrak{u}}
+\newcommand{\frakl}{\mathfrak{l}}
+\newcommand{\fraky}{\mathfrak{y}}
+\newcommand{\frakv}{\mathfrak{v}}
+\newcommand{\frakw}{\mathfrak{w}}
+\newcommand{\frake}{\mathfrak{e}}
+\newcommand{\bbX}{\mathbb{X}}
+\newcommand{\frakG}{\mathfrak{G}}
+\newcommand{\frakH}{\mathfrak{H}}
+\newcommand{\frakE}{\mathfrak{E}}
+\newcommand{\frakF}{\mathfrak{F}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\h}{\mathfrak{h}}
+\renewcommand{\k}{\mathfrak{k}}
+\newcommand{\z}{\mathfrak{z}}
+\newcommand{\fraki}{\mathfrak{i}}
+\newcommand{\frakj}{\mathfrak{j}}
+\newcommand{\del}{\partial}
+\newcommand{\bbE}{\mathbb{E}}
+\newcommand{\scrO}{\mathscr{O}}
+\newcommand{\bbO}{\mathbb{O}}
+\newcommand{\scrA}{\mathscr{A}}
+\newcommand{\scrB}{\mathscr{B}}
+\newcommand{\scrE}{\mathscr{E}}
+\newcommand{\scrF}{\mathscr{F}}
+\newcommand{\scrG}{\mathscr{G}}
+\newcommand{\scrM}{\mathscr{M}}
+\newcommand{\scrN}{\mathscr{N}}
+\newcommand{\scrP}{\mathscr{P}}
+\newcommand{\frakS}{\mathfrak{S}}
+\newcommand{\frakT}{\mathfrak{T}}
+\newcommand{\calI}{\mathcal{I}}
+\newcommand{\calJ}{\mathcal{J}}
+\newcommand{\scrI}{\mathscr{I}}
+\newcommand{\scrJ}{\mathscr{J}}
+\newcommand{\scrH}{\mathscr{H}}
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\scrK}{\mathscr{K}}
+\newcommand{\calK}{\mathcal{K}}
+\newcommand{\scrV}{\mathscr{V}}
+\newcommand{\scrW}{\mathscr{W}}
+\newcommand{\bbS}{\mathbb{S}}
+\newcommand{\bfA}{\mathbf{A}}
+\newcommand{\bfB}{\mathbf{B}}
+\newcommand{\bfC}{\mathbf{C}}
+\renewcommand{\O}{\mathbb{O}}
+\newcommand{\calV}{\mathcal{V}}
+\newcommand{\scrR}{\mathscr{R}} %radical
+\newcommand{\sfR}{\mathsf{R}} %quantum R-matrices
+\newcommand{\sfr}{\mathsf{r}} %classical R-matrices
+\newcommand{\rmZ}{\mathrm{Z}} %centre of algebra
+\newcommand{\rmC}{\mathrm{C}} %centralisers in algebras
+\newcommand{\bfGamma}{\mathbf{\Gamma}}
+\newcommand{\scrU}{\mathscr{U}}
+\newcommand{\rmW}{\mathrm{W}} %Weil group
+\newcommand{\frakM}{\mathfrak{M}}
+\newcommand{\frakN}{\mathfrak{N}}
+\newcommand{\frakB}{\mathfrak{B}}
+\newcommand{\frakX}{\mathfrak{X}}
+\newcommand{\frakY}{\mathfrak{Y}}
+\newcommand{\frakZ}{\mathfrak{Z}}
+\newcommand{\frakU}{\mathfrak{U}}
+\newcommand{\frakR}{\mathfrak{R}}
+\newcommand{\frakP}{\mathfrak{P}}
+\newcommand{\frakQ}{\mathfrak{Q}}
+\newcommand{\sfX}{\mathsf{X}}
+\newcommand{\sfY}{\mathsf{Y}}
+\newcommand{\sfZ}{\mathsf{Z}}
+\newcommand{\sfS}{\mathsf{S}}
+\newcommand{\sfT}{\mathsf{T}}
+\newcommand{\sfOmega}{\mathsf{\Omega}} %drinfeld p-adic upper-half plane
+\newcommand{\rmA}{\mathrm{A}}
+\newcommand{\rmB}{\mathrm{B}}
+\newcommand{\calT}{\mathcal{T}}
+\newcommand{\sfA}{\mathsf{A}}
+\newcommand{\sfB}{\mathsf{B}}
+\newcommand{\sfC}{\mathsf{C}}
+\newcommand{\sfD}{\mathsf{D}}
+\newcommand{\sfE}{\mathsf{E}}
+\newcommand{\sfF}{\mathsf{F}}
+\newcommand{\sfG}{\mathsf{G}}
+\newcommand{\sfh}{\mathsf{h}} %coxeter number
+\newcommand{\frakL}{\mathfrak{L}}
+\newcommand{\K}{\mathrm{K}}
+\newcommand{\rmT}{\mathrm{T}}
+\newcommand{\bfv}{\mathbf{v}}
+\newcommand{\bfg}{\mathbf{g}}
+\newcommand{\frakV}{\mathfrak{V}}
+\newcommand{\bfn}{\mathbf{n}}
+
+%special lie modules
+\newcommand{\standard}{\mathcal{M}}
+\newcommand{\simple}{\bar{\mathcal{M}}}
+\newcommand{\Vac}{\mathcal{Vac}}
+\newcommand{\Weyl}{\mathcal{W}}
+\newcommand{\KR}{\mathcal{KR}}
+
+\newcommand{\frakC}{\mathfrak{C}}
+\newcommand{\frakD}{\mathfrak{D}}
+\newcommand{\rmi}{\mathrm{i}}
+\newcommand{\bfH}{\mathbf{H}}
+\newcommand{\bfX}{\mathbf{X}}
+\newcommand{\coxeter}{\mathrm{h}}
+
+\newcommand{\aff}{\mathrm{aff}}
+\newcommand{\ft}{\mathrm{ft}} %finite type
+\newcommand{\fp}{\mathrm{fp}} %finite presentation
+\newcommand{\fr}{\mathrm{fr}} %free
+\newcommand{\tft}{\mathrm{tft}} %topologically finite type
+\newcommand{\tfp}{\mathrm{tfp}} %topologically finite presentation
+\newcommand{\tfr}{\mathrm{tfr}} %topologically free
+\newcommand{\aft}{\mathrm{aft}}
+\newcommand{\lft}{\mathrm{lft}}
+\newcommand{\laft}{\mathrm{laft}}
+\newcommand{\cpt}{\mathrm{cpt}}
+\newcommand{\cproj}{\mathrm{cproj}}
+\newcommand{\qc}{\mathrm{qc}}
+\newcommand{\qs}{\mathrm{qs}}
+\newcommand{\lcmpt}{\mathrm{lcmpt}}
+\newcommand{\red}{\mathrm{red}}
+\newcommand{\fin}{\mathrm{fin}}
+\newcommand{\fd}{\mathrm{fd}} %finite-dimensional
+\newcommand{\gen}{\mathrm{gen}}
+\newcommand{\petit}{\mathrm{petit}}
+\newcommand{\gros}{\mathrm{gros}}
+\newcommand{\loc}{\mathrm{loc}}
+\newcommand{\glob}{\mathrm{glob}}
+%\newcommand{\ringed}{\mathrm{ringed}}
+%\newcommand{\qcoh}{\mathrm{qcoh}}
+\newcommand{\cl}{\mathrm{cl}}
+\newcommand{\et}{\mathrm{\acute{e}t}}
+\newcommand{\fet}{\mathrm{f\acute{e}t}}
+\newcommand{\profet}{\mathrm{prof\acute{e}t}}
+\newcommand{\proet}{\mathrm{pro\acute{e}t}}
+\newcommand{\Zar}{\mathrm{Zar}}
+\newcommand{\fppf}{\mathrm{fppf}}
+\newcommand{\fpqc}{\mathrm{fpqc}}
+\newcommand{\orig}{\mathrm{orig}} %overconvergent topology
+\newcommand{\smooth}{\mathrm{sm}}
+\newcommand{\sh}{\mathrm{sh}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\cop}{\mathrm{cop}}
+\newcommand{\open}{\mathrm{open}}
+\newcommand{\closed}{\mathrm{closed}}
+\newcommand{\geom}{\mathrm{geom}}
+\newcommand{\alg}{\mathrm{alg}}
+\newcommand{\sober}{\mathrm{sober}}
+\newcommand{\dR}{\mathrm{dR}}
+\newcommand{\rad}{\mathfrak{rad}}
+\newcommand{\discrete}{\mathrm{discrete}}
+%\newcommand{\add}{\mathrm{add}}
+%\newcommand{\lin}{\mathrm{lin}}
+\newcommand{\Krull}{\mathrm{Krull}}
+\newcommand{\qis}{\mathrm{qis}} %quasi-isomorphism
+\newcommand{\ho}{\mathrm{ho}} %homotopy equivalence
+\newcommand{\sep}{\mathrm{sep}}
+\newcommand{\insep}{\mathrm{insep}}
+\newcommand{\unr}{\mathrm{unr}}
+\newcommand{\tame}{\mathrm{tame}}
+\newcommand{\wild}{\mathrm{wild}}
+\newcommand{\nil}{\mathrm{nil}}
+\newcommand{\defm}{\mathrm{defm}}
+\newcommand{\Art}{\mathrm{Art}}
+\newcommand{\Noeth}{\mathrm{Noeth}}
+\newcommand{\affd}{\mathrm{affd}}
+%\newcommand{\adic}{\mathrm{adic}}
+\newcommand{\pre}{\mathrm{pre}}
+\newcommand{\coperf}{\mathrm{coperf}}
+\newcommand{\perf}{\mathrm{perf}}
+\newcommand{\perfd}{\mathrm{perfd}}
+\newcommand{\rat}{\mathrm{rat}}
+\newcommand{\cont}{\mathrm{cont}}
+\newcommand{\dg}{\mathrm{dg}}
+\newcommand{\almost}{\mathrm{a}}
+%\newcommand{\stab}{\mathrm{stab}}
+\newcommand{\heart}{\heartsuit}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\rot}{\mathrm{rot}}
+\newcommand{\qproj}{\mathrm{qproj}} %quasi-projective
+\newcommand{\pd}{\mathrm{pd}}
+\newcommand{\crys}{\mathrm{crys}}
+\newcommand{\prisma}{\mathrm{prisma}}
+\newcommand{\FF}{\mathrm{FF}}
+\newcommand{\sph}{\mathrm{sph}}
+\newcommand{\lax}{\mathrm{lax}}
+\newcommand{\weak}{\mathrm{weak}}
+\newcommand{\strict}{\mathrm{strict}}
+\newcommand{\mon}{\mathrm{mon}}
+\newcommand{\sym}{\mathrm{sym}}
+\newcommand{\lisse}{\mathrm{lisse}}
+\newcommand{\an}{\mathrm{an}}
+\newcommand{\ad}{\mathrm{ad}}
+\newcommand{\sch}{\mathrm{sch}}
+\newcommand{\rig}{\mathrm{rig}}
+\newcommand{\pol}{\mathrm{pol}}
+\newcommand{\plat}{\mathrm{flat}}
+\newcommand{\proper}{\mathrm{proper}}
+\newcommand{\compl}{\mathrm{compl}}
+\newcommand{\non}{\mathrm{non}}
+\newcommand{\access}{\mathrm{access}}
+\newcommand{\comp}{\mathrm{comp}}
+\newcommand{\tstructure}{\mathrm{t}} %t-structures
+\newcommand{\pure}{\mathrm{pure}} %pure motives
+\newcommand{\mixed}{\mathrm{mixed}} %mixed motives
+\newcommand{\num}{\mathrm{num}} %numerical motives
+\newcommand{\ess}{\mathrm{ess}}
+\newcommand{\topological}{\mathrm{top}}
+\newcommand{\convex}{\mathrm{cvx}}
+\newcommand{\locconvex}{\mathrm{lcvx}}
+\newcommand{\ab}{\mathrm{ab}} %abelian extensions
+\newcommand{\inj}{\mathrm{inj}}
+\newcommand{\surj}{\mathrm{surj}} %coverage on sets generated by surjections
+\newcommand{\eff}{\mathrm{eff}} %effective Cartier divisors
+\newcommand{\Weil}{\mathrm{Weil}} %weil divisors
+\newcommand{\lex}{\mathrm{lex}}
+\newcommand{\rex}{\mathrm{rex}}
+\newcommand{\AR}{\mathrm{A\-R}}
+\newcommand{\cons}{\mathrm{c}} %constructible sheaves
+\newcommand{\tor}{\mathrm{tor}} %tor dimension
+\newcommand{\connected}{\mathrm{connected}}
+\newcommand{\cg}{\mathrm{cg}} %compactly generated
+\newcommand{\nilp}{\mathrm{nilp}}
+\newcommand{\isg}{\mathrm{isg}} %isogenous
+\newcommand{\qisg}{\mathrm{qisg}} %quasi-isogenous
+\newcommand{\irr}{\mathrm{irr}} %irreducible represenations
+\newcommand{\indecomp}{\mathrm{indecomp}}
+\newcommand{\preproj}{\mathrm{preproj}}
+\newcommand{\preinj}{\mathrm{preinj}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\crit}{\mathrm{crit}}
+\newcommand{\semisimple}{\mathrm{ss}}
+\newcommand{\integrable}{\mathrm{int}}
+\newcommand{\s}{\mathfrak{s}}
+\newcommand{\elliptic}{\mathrm{ell}}
+\newcommand{\stab}{\mathrm{stab}}
+\newcommand{\disj}{\mathrm{disj}}
+\newcommand{\positive}{\mathrm{pos}} 
+\newcommand{\negative}{\mathrm{neg}} 
+\newcommand{\up}{\mathrm{up}} %upper
+\newcommand{\low}{\mathrm{low}} %lower
+\newcommand{\locallyconstant}{\mathrm{lconst}}
+\newcommand{\complete}{\mathrm{compl}}
+\newcommand{\chiral}{\mathrm{ch}}
+\newcommand{\fact}{\mathrm{fact}}
+\newcommand{\tw}{\mathrm{tw}} %twisted
+
+%prism custom command
+\usepackage{relsize}
+\usepackage[bbgreekl]{mathbbol}
+\usepackage{amsfonts}
+\DeclareSymbolFontAlphabet{\mathbb}{AMSb} %to ensure that the meaning of \mathbb does not change
+\DeclareSymbolFontAlphabet{\mathbbl}{bbold}
+\newcommand{\prism}{{\mathlarger{\mathbbl{\Delta}}}}
+
+%symmetric pairs; twisted yangians and reflection algebras
+\newcommand{\romanzero}{\mathsf{0}}
+\newcommand{\romanone}{\mathsf{I}}
+\newcommand{\romantwo}{\mathsf{II}}
+\newcommand{\romanthree}{\mathsf{III}}
+\newcommand{\Aone}{\sfA\romanone}
+\newcommand{\BCD}{\sfB, \sfC, \sfD}
+\newcommand{\BCDzero}{\sfB\sfC\sfD\romanzero}
+\newcommand{\BCDone}{\sfB\sfC\sfD\romanone}
+\newcommand{\XB}{\mathcal{XB}} %reflection equation
+\newcommand{\UXB}{\mathcal{UXB}} %reflection equation and unitary condition
+\newcommand{\UB}{\mathcal{UB}} %reflection equation, unitary condition, and symmetry relation
+\newcommand{\ZB}{\mathcal{ZB}} 
+
+\renewcommand{\i}{\imath}
+
+%superalgebras
+\newcommand{\even}{\bar{0}}
+\newcommand{\odd}{\bar{1}}
+\newcommand{\super}{\mathrm{s}}
+
+%schur weyl duality
+\newcommand{\heckealgebra}{\mathsf{He}}
+\newcommand{\degenerateheckealgebra}{\overline{\heckealgebra}}
+\newcommand{\braueralgebra}{\mathsf{Br}}
+\newcommand{\walledbraueralgebra}{\overline{\braueralgebra}}
+\newcommand{\VW}{\mathsf{VW}}

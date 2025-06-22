@@ -1,0 +1,21 @@
+\section{Representations of algebraic groups}
+    \begin{convention}
+        We fix once and for all a ground field $k$, and we now work over the base scheme $S := \Spec k$.
+    \end{convention}
+
+    \subsection{Properties of group schemes over fields and of algebraic groups}
+        \begin{question}[Common affine algebraic groups]
+            Prove that the presheaves on $(\Spec k)_{\fppf}$ given as follows are affine algebraic group over $k$. In particular, find the affine $k$-schemes that represent these functors of points.
+            \begin{enumerate}
+                \item $\G_a(\Spec A) := A$, with the RHS being understood as the underlying additive abelian group of the $k$-algebra $A$. This is usually called the \textbf{additive group scheme}.
+                \item $\G_m(\Spec A) := A^{\x}$. This is usually called the \textbf{multiplicative group scheme}. We sometimes also write $\GL_1$ for this group scheme.
+                \item $\mu_n(\Spec A) := \{ \text{$n^{th}$ roots of unity in $A$} \}$.
+                \item Let $V$ be a $k$-vector space. Then, let $\GL(V)(\Spec A) := \Aut_{A\mod}(V \tensor_k A)$. This is usually called the general linear group scheme of $V$. Prove also, that this is isomorphic to a Zariski-open (affine) subscheme of $\Spec k[x_{1, 1}, x_{1, 2}, ..., x_{n, n}]$, with $n := \dim_k V$.
+                \item Let $V$ be a $k$-vector space. Then, let $\SL(V)(\Spec A) := \{ \sigma \in \Aut_{A\mod}(V \tensor_k A) \mid \det \sigma = 1 \}$. This is usually called the special linear group scheme of $V$. Prove also, that this is a closed subgroup scheme of $\GL(V)$.
+            \end{enumerate}
+        \end{question}
+
+    \subsection{Representations of finite algebraic groups}
+        \todo[inline]{Drinfeld double of finite-dimensional Hopf algebras.}
+
+    \subsection{Representations of linear algebraic groups}
