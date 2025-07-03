@@ -1,0 +1,34 @@
+\section{Introduction}
+    \subsection{Notations}
+        Let $\sfX$ be an affine Dynkin diagram - untwisted or twisted - of a classical type (see \cite[Chapter 4, Tables Aff 2 and 3, p. 55]{kac_infinite_dimensional_lie_algebras}), let $\g(\sfX)$ be the associated (affine) Kac-Moody algebra, let $\g_N \subset \sl_N$ be the underlying finite-dimensional simple Lie algebra, and let $\bar{\sfX}$ be the Dynkin diagram associated to $\g_N$. Let $\sigma$ be a finite-order automorphism of $\bar{\sfX}$. This gives rise to a Lie algebra automorphism of $\g_N$, which in turn gives rise to an automorphism of the loop algebra $\Loop\g_N \cong \g_N \tensor_{\bbC} \bbC[t^{\pm 1}]$. Then, write $\Loop^{\sigma}\g_N$ for the fixed-point subalgebra; this is the Lie algebra that we will be mainly working with.
+
+        If $A$ is an algebra (not even necessarily associative or unital) with multiplication $\mu: A \tensor A \to A$, then its \textbf{opposite algebra} shall be denoted by $A^{\op}$. This object has the same underlying vector space, but the opposite multiplication is now given by $\mu^{\op} := \mu \circ \tau_{1, 2}$, wherein $\tau_{1, 2}: A \tensor A \xrightarrow[]{\cong} A \tensor A$ is the isomorphism given by $\tau_{1, 2}(x \tensor y) := y \tensor x$. Likewise, if $C$ is a coalgebra with comultiplication $\Delta: C \to C \tensor C$, then its \textbf{(co-)opposite} shall be denoted by $C^{\cop}$; the co-opposite multiplication is given by $\Delta^{\cop} := \tau_{1, 2} \circ \Delta$. These notions generalise in a straightforward manner to the setting of topological (co)algebras.
+
+        Given vector spaces $\{V_i\}_{1 \leq i \leq n}$ and an operator with spectral parameters:
+            $$T(z_1, ..., z_n) \in \End(V_1 \tensor ... \tensor V_n)(\!(z_1^{-1}, ..., z_n^{-1})\!)$$
+        along with an auxiliary space $V_0$, then for:
+            $$\{i_0\} := \{0, ..., n\} \setminus \{i_1, ..., i_n\}$$
+        we will write:
+            $$T_{i_1, ..., i_n}(z_1, ..., z_n) \in \End\left(V_0 \tensor (V_1 \tensor ... \tensor V_n)\right)(\!(z_1^{-1}, ..., z_n^{-1})\!)$$
+        for the operator with spectral parameter on $\bigotimes_{i = 0}^n V_i$ which acts as $\id_{V_0}$ on the $i_0^{th}$ tensor factor and as $T(z_1, ..., z_n)$ on the remaining ones. In particular, we will usually be concerned with operators:
+            $$R(z_1, z_2) \in \End(V_1 \tensor V_2)(\!(z_1^{-1}, z_2^{-1})\!)$$
+            $$K(z) \in \End(V)(\!(z^{-1})\!)$$
+        appearing in say, the quantum Yang-Baxter equation \eqref{equation: additive_spectral_QYBE} or the boundary quantum Yang-Baxter equation \eqref{equation: additive_spectral_bQYBE}.
+
+    \subsection{Overview}
+        Our goal here is to generalise the results of \cite{molev_ragoucy_sorba_twisted_q_yangians_type_A}. Therein, the authors constructed the so-called \say{twisted $q$-Yangians}, which are coideal subalgebras of the quantum loop algebras $\calU_q(\Loop\sl_N)$ obtained by replacing the rational solutions to the QYBE\footnote{Quantum Yang-Baxter equation.} in the twisted Yangian construction of Olshanskii (cf. \cite{olshanski_twisted_yangians_and_infinite_dimensional_classical_lie_algebras} or \cite[Chapter 2]{molev_yangians_and_classical_lie_algebras}) with trigonometric ones. Doing so gives rise to trigonometric-type solutions to the bQYBE\footnote{Boundary quantum Yang-Baxter equation.}, thereby obtaining new coideal subalgebras of $\calU_q(\Loop\sl_N)$ different from the usual quantum symmetric pairs. We would now like to generalise this construction to quantum loop algebras of all remaining non-exceptional affine types (in the Kac classification, which can be found e.g. in \cite[Chapter 4]{kac_infinite_dimensional_lie_algebras}), and in particular to the twisted types:
+            $$\sfA_2^{(2)}$$
+            $$\sfA_{2\ell}^{(2)}, \ell \geq 2$$
+            $$\sfA_{2\ell - 1}^{(2)}, \sfA_{2\ell - 1}^{(2')}, \ell \geq 3$$
+            $$\sfD_{\ell}^{(2)}, \ell \geq 3$$
+            $$\sfD_4^{(3)}$$
+        and we write $\sfA_{2\ell - 1}^{(2')}$ to mean the second realisation of the twisted affine type $\sfA_{2\ell - 1}$, wherein the affinising vertex of the Dynkin diagram is the long simple root (see \cite[Chapter 4, Tables Aff 2 and 3, p. 55]{kac_infinite_dimensional_lie_algebras}). As for the untwisted affine types, they have been touched upon in \cite{regelskis_vlaar_reflection_matrices_coideal_subalgebras}, wherein the authors established twisted $q$-Yangians as coideal subalgebras of the quantum loop algebras of said untwisted types.  
+        
+        As a prerequisite, it is necessary that we know how to realise the quantum loop algebras of these types in an R-matrix presentation, so that afterwards, the corresponding R-matrices can be used for the construction of twisted $q$-Yangians inside these quantum loop algebras. Fortunately, a forthcoming work by Guay-Regelskis-Wendlandt will supply us with such R-matrix presentations. Therefore, we will be giving an overview of their results, and then move on to describing twisted $q$-Yangians.
+
+    \subsection{\texorpdfstring{Defining twisted $q$-Yangians}{}}
+        Let $\g_N \subset \sl_N$ be a finite-dimensional simple Lie algebra of a classical type in the Cartan-Killing classification.
+    
+        To begin, unlike in \cite{molev_ragoucy_sorba_twisted_q_yangians_type_A} where the authors defined twisted $q$-Yangians embeddedly as associative subalgebras of $\calU_q(\Loop\sl_N)$ first of all, let us follow \cite{regelskis_vlaar_reflection_matrices_coideal_subalgebras} and define twisted $q$-Yangians as reflection algebras in the sense of \cite{guay_regelskis_twisted_yangians_for_symmetric_pairs_of_types_BCD}, but with the rational matrices therein replaced by trigonometric ones. We will then show that these reflection-type algebras indeed embed as coideal subalgebras into $\calU_q(\Loop^{\sigma}\g_N)$, and then compute their centres by establishing a $q$-analogue of Sklyanin determinants.
+
+        Next, we will see if the constructed twisted $q$-Yangians admit evaluation homomorphisms to the finite-type quantum groups $\calU_q(\g_N)$. Said evaluation homomorphisms are to be compatible with the specialisation $q \to 1$ as well, which is to say that after specialisation, one ought to recover the usual evaluation homomorphisms of the usual twisted Yangians.

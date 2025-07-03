@@ -1,0 +1,59 @@
+\section{Cylindrical bialgebras}
+    \subsection{Coboundary and (quasi-)triangular structures}
+        Recall from \cite[Subsection 9.4.1]{etingof_schiffmann_lectures_on_quantum_groups} that a \textbf{coboundary bialgebra}\footnote{As the terminology suggests, this notion is cohomological in nature, but this interpretation is not very useful for our purposes.} is a pair:
+            $$(H, R)$$
+        consisting of a bialgebra $(H, \mu, \eta, \Delta, \e)$ equipped with a bialgebra inner automorphism:
+            $$R \in \Inn_{\bi\Alg}(H \tensor H)$$
+        (equivalently, an element $R \in (H \tensor H)^{\x}$) called the \textbf{universal R-matrix} or \textbf{quantum R-matrix} of $H$, which is such that:
+            \begin{equation} \label{equation: R_matrix_intertwining_with_coproduct}
+                R \cdot \Delta = \Delta^{\cop} \cdot R \iff \Delta^{\cop} = R \cdot \Delta \cdot R^{-1}
+            \end{equation}
+        Additionally, because $R$ is a bialgebra automorphism, it also automatically satisfies the following identity
+            \begin{equation} \label{equation: R_matrix_intertwining_with_counit}
+                (\e \tensor \id_H)(R) = 1 = (\id_H \tensor \e)(R)
+            \end{equation}
+        Now, in the even that $(H, R)$ is a $\bbC[\![\hbar]\!]$-bialgebra that quantises a coboundary Lie bialgebra $(\a, r)$ (in the sense of Etingof-Kazhdan; see e.g. \cite{etingof_kazhdan_quantisation_1}), then by \cite[Proposition 9.2]{etingof_schiffmann_lectures_on_quantum_groups}, we know that the quantum R-matrix $R$ will be related to its classical counterpart $r$ by:
+            $$R \propto \exp( \hbar r )$$
+        By requiring in addition that $R$ is \say{unitary}, i.e. that $R_{1, 2} R_{2, 1} = 1$ (cf. equation \eqref{equation: unitarity_of_R_matrix}), we will get an exact equality $R = \exp(\hbar r)$, and then as a corollary, the following will hold in $\bigwedge^2 \a$:
+            $$R \equiv 1 + \hbar r \pmod{\hbar^2}$$
+        with both sides being coboundary structures on $\a$.
+
+        Next, following \cite[Subsection 9.4.2]{etingof_schiffmann_lectures_on_quantum_groups}, if the universal R-matrix of a coboundary bialgebra satisfies the following additional condition, usually called \textbf{quasi-triangularity} or the \textbf{hexagonal relations}. This takes the form of a system of equations as follows:
+            \begin{equation} \label{equation: quasi_triangularity}
+                \begin{cases}
+                    (\Delta \tensor \id_H)(R) = R_{1, 3} R_{2, 3}
+                    \\
+                    (\id_H \tensor \Delta)(R) = R_{1, 3} R_{1, 2}
+                \end{cases}
+            \end{equation}
+        In this case, we will refer to the coboundary bialgebra $(H, R)$ as being a \textbf{quasi-triangular bialgebra}. An immediate effect of this property is that the module category:
+            $$H\mod$$
+        is a rigid \textit{braided monoidal} with a \textit{fibre functor}, thus allowing us to reconstruct $H$ via the Tannakian formalism.
+            
+        Moreover, if $(H, R)$ is a quasi-triangular bialgebra, then so are $(H, R_{2, 1}^{-1})$ and $(H^{\op, \cop}, R_{2, 1})$. Importantly, the system of equations \eqref{equation: quasi_triangularity} above is equivalent to the QYBE, and the way that one obtains this equivalence is by first of all exploiting the invertibility of $R \in (H \tensor H)^{\x}$, then combining either equation in \eqref{equation: quasi_triangularity} with the intertwining identity \eqref{equation: R_matrix_intertwining_with_coproduct}, in order to get:
+            $$R_{1, 2} R_{1, 3} R_{2, 3} = R_{2, 3} R_{1, 3} R_{1, 2}$$
+        which is indeed the QYBE.
+
+        If, in addition, the element $R$ satisfies \textbf{unitarity}:
+            \begin{equation} \label{equation: unitarity_of_R_matrix}
+                R_{1, 2} R_{2, 1} = 1
+            \end{equation}
+        then we will say that $(H, R)$ is a \textbf{triangular bialgebra}. The effect on the module category $H\mod$ is that now, when $(H, R)$ is triangular, said category is now \textit{symmetric monoidal}, instead of merely being braided monoidal; we remark, though, that this is generally still a non-trivially symmetric monoidal structure, i.e. not merely given by permutation of the two tensor factors.
+        
+        Finally, we note that just like above, if a (quasi-)triangular $\bbC[\![\hbar]\!]$-bialgebra is a quantisation in the sense of Etingof-Kazhdan of some Lie bialgebra, then said Lie bialgebra classical limit will also be (quasi-)triangular.
+
+    \subsection{Bialgebra twistings}
+        Suppose that $(H, \mu, \eta, \Delta, \e)$ be a $\bbC[\![\hbar]\!]$-bialgebra that quantises some Lie bialgebra $(\a, [-, -], \delta)$. It is then possible obtain other 
+        \begin{definition}[Drinfeld twists] \label{def: drinfeld_twists}
+            An element $J \in H \tensor H$ is called a twist if the following conditions are satisfied:
+            \begin{itemize}
+                \item $J \equiv 1 \pmod{\hbar}$,
+                \item $(\e \tensor \id_H)(J) = 1 = (\id_H \tensor \e)(J)$,
+                \item $(J \tensor 1) \cdot (\Delta \tensor \id_H)(J) = (1 \tensor J) \cdot (\id_H \tensor \Delta)$.
+            \end{itemize}
+        \end{definition}
+
+    \subsection{Cylindrical structures}
+        \begin{definition}[Cylindrical bialgebras] \label{def: cylindrical_bialgebras}
+            Let $(H, R)$ be a quasi-triangular bialgebra. 
+        \end{definition}
