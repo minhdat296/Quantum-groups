@@ -1,0 +1,225 @@
+\section{Free field realisations for quantum loop algebras}
+    \subsection{Trigonometric-type universal R-matrices}
+        To begin, let us recall some features of quantum R-matrices with spectral parameters, particularly those arising as Baxterisations of trigonometric-type constant quantum R-matrices. 
+    
+        For what follows, let $\hbar$ be a formal variable. At certain points, we will specialise $\hbar$ to some complex number, in which case it will take values in $\bbC \setminus 2\pi \sqrt{-1} \Q$ (i.e. we work only with generic values of $e^{\hbar}$).
+        
+        Again, let:
+            $$\g_N \subset \sl_N$$
+        be a finite-dimensional simple Lie algebra of a classical type in the Cartan-Killing classification. Let:
+            $$\calU_{\hbar}(\g_N)$$
+        be the\footnote{By a Hochschild-cohomological argument this is known to be unique up to isomorphisms as a Hopf algebra deforming the universal enveloping algebra $\calU(\g_N)$.} quantisation of the standard Lie bialgebra structure on $\g_N$. \textit{A priori}, this quantisation is quasi-triangular, thus possessing a (constant) quantum R-matrix:
+            $$\bar{\calR}$$
+        that is a \textit{constant} solution to the quantum Yang-Baxter equation (QYBE)
+            \begin{equation} \label{equation: constant_QYBE}
+                \calR_{1, 2} \calR_{1, 3} \calR_{2, 3} = \calR_{2, 3} \calR_{1, 3} \calR_{1, 2}
+            \end{equation}
+        Equivalently, by the uniqueness of quantisations of Lie bialgebra structures on finite-type Kac-Moody algebras, this is a solution of trigonometric type in the Belavin-Drinfeld classification. This quantum R-matrix is unique to the Hopf algebra $\calU_{\hbar}(\g_N)$, for it is the Hochschild cohomological class representing this deformation of $\calU(\g_N)$, so we will instead write:
+            $$\calU_{\hbar}(\bar{\calR})$$
+        instead of $\calU_{\hbar}(\g_N)$ in order to put emphasis on the role of the R-matrix. More generally, if $\calr$ is a solution to the constant classical Yang-Baxter equation (CYBE) (set $u = v = 0$ in equation \eqref{equation: spectral_CYBE} to obtain its constant version) and $\calR \equiv \calr \pmod{\hbar}$ is a solution to the QYBE \eqref{equation: additive_spectral_QYBE} quantising $\calr$, then the corresponding quasi-triangular Hopf algebra obtained via the formalism of Faddeev-Reshetikhin-Takhtajan will be denoted by $\calU_{\hbar}(\calR)$; this construction is well-known when $\calR$ is a solution to the QYBE with spectral parameter, and for the constant case, see \cite{gautam_rupert_wendlandt_R_matrix_presentation_for_finite_QUEs}).
+    
+        Next, suppose that $\sfX$ is a connected Dynkin diagram of affine type, of either an untwisted or twisted type, and let:
+            $$\calR := \calR(u, v)$$
+        be the corresponding universal R-matrix of the quantum Kac-Moody algebra $\calU_{\hbar}(\sfX)$. This R-matrix depends on two spectral parameters $u$ and $v$, which we think of as two points living on a $1$-dimensional connected algebraic group over $\bbC$; \textit{a priori}, the only three possibilities are the multiplicative group $\G_m$ (whose functor of points is represented by $\Spec \bbC[t^{\pm 1}]$), the additive group $\G_a$ (whose functor of points is represented by $\Spec \bbC[t]$), and elliptic curves; we are interested in the first case. Specifically, the R-matrix at play is given by:
+            \begin{equation} \label{equation: affine_QUEs_universal_R_matrices}
+                \calR(u, v) :=
+            \end{equation}
+        Technically speaking, the R-matrix above depends also on the parameter $\hbar$ as well as the Dynkin diagram $\sfX$ (or equivalently, its associated Kac-Moody algebra), but we omit these from the notation to avoid cluttering. We remind the reader that $\calR$ is a solution to the spectral QYBE, best written here in its additive form:
+            $$\calR_{1, 2}(u, v) \calR_{1, 3}(u) \calR_{2, 3}(v) = \calR_{2, 3}(v) \calR_{1, 3}(u) \calR_{1, 2}(u, v)$$
+        (cf. equation \eqref{equation: additive_spectral_QYBE}), but we remark that the R-matrix $\calR(u, v)$ depends \textit{multiplicatively} on $e^u$ and $e^v$.
+        \begin{remark}
+            The R-matrix $\calR$ as above is a Baxterisation of the finite-type R-matrix $\bar{\calR}$ from before, but there are many Baxterisations that do not give rise to the quantum Kac-Moody algebra $\calU_{\hbar}(\sfX)$.
+        \end{remark}
+
+    \subsection{Quantum (twisted) loop algebras associated to trigonometric R-matrices}
+        Following \cite{guay_regelskis_wendlandt_R_matrix_presentation_of_loop_QUEs}, we begin with quantum (twisted) loop algebras given by RLL-type generators and relations. The defining relations in the following R-matrix presentation of (extended) quantum loop algebras are natural from the point of view of the FRT formalism, and let us also mention - for later reference - that it is useful to think of the (extended) quantum loop algebras defined below as trigonometric analogues of (centrally extended) double Yangians, a kind of quantum double for the usual Yangian; see example \ref{example: trigonometric_and_rational_loop_QUEs} below. This is why the monodromy matrices are \say{doubled}, and later on, we will see that there is a natural trigonometric analogue of the Yangian (the so-called \say{$q$-Yangian}) that is realisable as the subalgebra of a quantum loop algebra generated by the non-negative Fourier modes of the aforementioned monodromy matrices.
+
+        Because we will be employing quantum vertex algebras, it is more convenient to start with the formal versions of the (extended) quantum loop algebras, and then specialise the deformation parameter $q$ later on when necessary. Moreover, it will be convenient to define these algebras relative to a level parameter $\level \in \bbC$. Definition \ref{def: extended_loop_QUEs_R_matrix_presentation} is, strictly speaking, a slight generalisation of the notion of the same name from \cite{guay_regelskis_wendlandt_R_matrix_presentation_of_loop_QUEs}; there, the authors were concerned only with the level $\level = 0$ case. Working at an arbitrary level $\level \in \bbC$ introduces an extra dependence on $q^{\pm \level}$ of the quantum R-matrix in relation \eqref{equation: extended_loop_QUEs_mixed_relation}, which disappears as $\level \to 0$ (see \cite[Remark 3.6]{guay_regelskis_wendlandt_R_matrix_presentation_of_loop_QUEs}). 
+
+        \begin{definition}[Abstract extended quantum loop algebras] \label{def: extended_loop_QUEs_R_matrix_presentation}
+            The \textbf{extended formal quantum loop algebra} associated to a solution:
+                $$\calR$$
+            of the spectral QYBE (equation \eqref{equation: additive_spectral_QYBE}) at \textbf{level}:
+                $$\level \in \bbC$$
+            is the associative algebra over $\bbC[\![\hbar]\!]$ that we denote by:
+                $$\calU_{\hbar}^{\ext}(\calR)_{\level}$$
+            It is generated by the coefficients of the matrix entries of the elements:
+                $$L^{\pm}(u) \in \Mat_N( \calU_{\hbar}^{\ext}(\calR)[\![u^{\pm 1}]\!] )$$
+            and they are subjected to the following relations:
+                $$
+                    \begin{cases}
+                        L_{i, j}^-[0] = L_{j, i}^+[0] = 0
+                        \\
+                        L_{i, i}^+[0] L_{i, i}^-[0] = L_{i, i}^-[0] L_{i, i}^+[0]
+                    \end{cases}, \quad 1 \leq i < j \leq N
+                $$
+                \begin{equation} \label{equation: extended_loop_QUE_RLL_relation}
+                    \calR(u, v) L_1^{\pm}(u) L_2^{\pm}(v) = L_2^{\pm}(u) L_1^{\pm}(v) \calR(u, v)
+                \end{equation}
+                \begin{equation} \label{equation: extended_loop_QUEs_mixed_relation}
+                    \calR(u + \level, v) L_1^+(u) L_2^-(v) = L_2^-(u) L_1^+(v) \calR(u - \level, v)
+                \end{equation}
+        \end{definition}
+        \begin{remark}
+            It is not necessary to specify the underlying (twisted) loop algebra $\Loop^{\sigma} \g_N$, as this information is already carried by the R-matrix $\calR$.
+        \end{remark}
+
+        \begin{lemma}[Centres of extended quantum loop algebras] \label{lemma: centres_of_loop_QUEs}
+            
+        \end{lemma}
+            \begin{proof}
+                
+            \end{proof}
+        \begin{definition}[Quantum loop algebras] \label{def: loop_QUEs_R_matrix_presentation}
+            
+        \end{definition}
+
+        \begin{proposition}[PBW bases for quantum loop algebras] \label{prop: PBW_for_loop_QUEs}
+            
+        \end{proposition}
+            \begin{proof}
+                
+            \end{proof}
+
+        \begin{lemma}[Hopf structures on extended quantum loop algebras] \label{lemma: hopf_structure_on_extended_loop_QUEs}
+            
+        \end{lemma}
+            \begin{proof}
+                
+            \end{proof}
+        \begin{corollary}[Hopf structures on quantum loop algebras] \label{coro: hopf_structure_on_loop_QUEs}
+            
+        \end{corollary}
+            \begin{proof}
+                
+            \end{proof}
+
+        \begin{example}[Trigonometric and rational quantum loop algebras] \label{example: trigonometric_and_rational_loop_QUEs}
+            Specialising the abstract QYBE solution $\calR$ in definition \ref{def: extended_loop_QUEs_R_matrix_presentation} to R-matrices of trigonometric and rational types, one recovers some well-known quantum algebras.
+            \begin{itemize}
+                \item When $\calR$ is the universal R-matrix of the quantum Kac-Moody algebra $\calU_{\hbar}(\sfX)$, i.e. of trigonometric type, the quantum loop algebra construction in definition \ref{def: extended_loop_QUEs_R_matrix_presentation} returns the usual quantum loop algebra of affine type $\sfX$, for which there is a Hopf algebra embedding:
+                    $$\calU_{\hbar}( \calR )_{\level} \subset \calU_{\hbar}(\sfX)$$
+                \item When $\calR$ is the universal R-matrix of the Yangian, i.e. of rational type, one obtains a Hopf algebra isomorphism:
+                    $$\calU_{\hbar}( \calR )_{\level} \cong \DY_{\hbar}(\calR)_{\level}$$
+                with the usual \textbf{(formal) double Yangian} at level $\level \in \bbC$ over $\bbC[\![\hbar]\!]$ (cf. e.g. \cite{molev_sugawara_operators_for_classical_lie_algebras}). Somewhat surprisingly, this is irrespective of what the diagram automorphism $\sigma$ is.
+            \end{itemize}
+        \end{example}
+
+        \begin{lemma}[Drinfeld's current presentation for quantum loop algebras] \label{lemma: drinfeld_current_presentation_for_loop_QUEs}
+            \todo[inline]{Equivalence between Drinfeld's current presentation and R-matrix presentation}
+        \end{lemma}
+            \begin{proof}
+                
+            \end{proof}
+        \begin{corollary}[Triangular decomposition] \label{coro: triangular_decomposition_for_loop_QUEs}
+            
+        \end{corollary}
+            \begin{proof}
+                
+            \end{proof}
+        \begin{corollary}[Kac-Moody coproduct fomrulae for Drinfeld generators] \label{coro: coproduct_formulae_for_drinfeld_generators}
+            
+        \end{corollary}
+            \begin{proof}
+                
+            \end{proof}
+        \begin{remark}
+            The formulae from corollary \ref{coro: coproduct_formulae_for_drinfeld_generators} should not be confused with those of the Drinfeld coproduct, which gives rise to an alternate Hopf algebra structure on quantum loop algebras. This is conjecturally related to the standard Kac-Moody coproduct by a Drinfeld twisting process, but we will not touch upon this point. We make this comment instead to put emphasis on the fact that the coideal subalgebras arising from the K-matrices of Appel-Regelskis-Vlaar are with respect to the Kac-Moody coproduct. 
+        \end{remark}
+            
+        \begin{definition}[The category O for quantum loop algebras] \label{def: category_O_loop_QUEs}
+            
+        \end{definition}
+        \begin{lemma}[Tensor structures and semi-simplicity of the category O] \label{lemma: tensor_structure_and_semi_simplicity_of_category_O}
+            \begin{enumerate}
+                \item The weight module category $\calU_{\hbar}(\calR)\mod^{\rootlattice}$ is a tensor category with respect to $\tensor := \tensor_{\bbC}$.
+                \item The category $\calO( \calU_{\hbar}(\calR) )$ is meromorphically braided via the universal R-matrix $\calR(w, z)$.
+                \item The category $\calO^{\integrable}( \calU_{\hbar}(\calR) )$ a semi-simple meromorphically braided subcategory of $\calO( \calU_{\hbar}(\calR) )$.
+            \end{enumerate}
+        \end{lemma}
+            \begin{proof}
+                
+            \end{proof}
+
+    \subsection{Quantum affine vertex algebras associated to trigonometric R-matrices}
+        Having recalled certain features of the quantum loop algebras associated to a given trigonometric R-matrix, we next recall the construction of a quantum vertex algebra structure on the so-called \say{vacuum module}\footnote{Also known as \say{Weyl modules}, such as in \cite{etingof_kazhdan_quantisation_5}, but we would like to avoid this terminology as it is also used to refer to other constructions.}. This construction also takes as input the aforementioned trigonometric R-matrix, which for us is $\calR$ coming from the quantum Kac-Moody algebra $\calU_{\hbar}(\sfX)$, but is also applicable to the rational and elliptic cases. We are not interested in the last case, but it is important to us that it is possible to endow vacuum modules with structures of quantum vertex algebras in both the rational and trigonometric cases. This is because eventually, we would like it to be so that as $q \to 1$, the (twisted) $q$-Yangians will degenerate back to the usual (twisted) Yangians, and this compatibility must start at the level of quantum vertex algebras (and modules over them; more on this later).
+
+        We begin with the following intermediary notion, which is necessary for defining vacuum modules.
+        \begin{definition}[Yangians and dual Yangians] \label{def: (dual)_yangians}
+            Let $\calR$ be a solution to the spectral QYBE (equation \eqref{equation: additive_spectral_QYBE}) and fix a level $\level \in \bbC$.
+            \begin{itemize}
+                \item The \textbf{(formal) Yangian}:
+                    $$\calY_{\hbar}(\calR)$$
+                associated to $\calR$ is then the $\bbC[\![\hbar]\!]$-subalgebra of the quantum loop algebra $\calU_{\hbar}(\calR)_{\level}$ generated by the coefficients of the matrix entries of the series:
+                    $$L^-(u) \in \Mat_N( \calU_{\hbar}(\calR)_{\level}[\![u^{-1}]\!] )$$
+                \item The \textbf{(formal) dual Yangian}:
+                    $$\calY^+_{\hbar}(\calR)$$
+                associated to $\calR$ is the $\hbar$-adic completion of the $\bbC[\![\hbar]\!]$-subalgebra of the quantum loop algebra $\calU_{\hbar}(\calR)_{\level}$ generated by the coefficients of the matrix entries of the series:
+                    $$L^+(u) \in \Mat_N( \calU_{\hbar}(\calR)_{\level}[\![u]\!] )$$
+            \end{itemize}
+        \end{definition}
+        \begin{remark}
+            Both the Yangian and dual Yangian are Hopf subalgebras of the quantum loop algebra.
+        \end{remark}
+        \begin{example}[Trigonometric and rational Yangians] \label{example: trigonometric_and_rational_yangians}
+            \begin{itemize}
+                \item When $\calR$ is a trigonometric R-matrix, one obtains via definition \ref{def: (dual)_yangians} the notions of $\hbar$-Yangians, also known as $q$-Yangians for $q := e^{\hbar}$.  
+                \item When $\calR$ is a rational R-matrix, one recovers Drinfeld's Yangian from \cite{drinfeld_original_yangian_paper} (see also \cite[Chapter 1]{molev_yangians_and_classical_lie_algebras} for a more detailed discussion of these algebras, particularly in the R-matrix presentation). It is worth noting that the Yangian that one obtains in this case is independent of the diagram automorphism $\sigma$, thus relying only on the underlying finite-type Lie algebra $\g_N$.
+            \end{itemize}
+        \end{example}
+        \begin{definition}[Vacuum modules] \label{def: abstract_vacuum_modules}
+            \todo[inline]{Define vacuum modules for general quasi-triangular algebras.}
+        \end{definition}
+    
+        \begin{lemma}[qVOA structures on vacuum modules of quantum loop algebras] \label{lemma: qVOA_structures_on_loop_QUE_vacuum_modules}
+            
+        \end{lemma}
+            \begin{proof}
+                
+            \end{proof}
+
+    \subsection{Quantum bosonic Heisenberg vertex algebras and quantum Wakimoto modules associated to trigonometric R-matrices}
+        \todo[inline]{It would seem that there are no (systematic) ways to derive embeddings of QSP algebras in the Drinfeld-Jimbo presentation into quantum loop algebras in the R-matrix presentation without making use of the Ding-Frenkel-Jing-Liu-Molev isomorphisms between the two realisations of quantum loop algebras. Kolb for example, in his paper in Kac-Moody QSPs, relied on an embedding $\calU_{\hbar}^{DJ}(\Loop \sl_N) \hookrightarrow \calU_{\hbar}^R(\Loop \gl_N)$ by Frenkel-Mukhin, which itself depends on the Ding-Frenkel isomorphism in type $\sfA$. Those DFJLM isomorphisms ultimately come from quantum vertex operators, as far as I understand them, so I think we may as well work with them.}
+
+        \todo[inline]{The general idea, though, is simple. Roughly speaking, we will be repeatedly making use of the idea that quantum current algebras are "algebras of coefficients" of quantum vertex algebras, much like how affine Lie algebras are coefficient algebras for the affine vertex algebra structures defined on vacuum modules (I'm being a bit vague here, but I hope I got the point across).}
+
+        We would now like to give a realisation of the quantum loop algebras defined in the previous subsection in terms of quantum vertex operators of free bosons. We expect such a realisation to exist since the R-matrix is unitary, signifying that the corresponding physical theory is that of free fields; their corresponding vertex operators are deformed in order to accommodate the $q$-deformed nature of the R-matrix at play. Setting up such a realisation first of all involves writing down Fock spaces on which creation and annihilation operators shall act; physically, one thinks of this stage of the process as setting up a theory obeying no non-trivial Lie-type symmetries. Such Fock spaces, as usual, shall be vacuum modules of a Heisenberg-type algebra. In light of the definition of general abstract vacuum modules (definition \ref{def: abstract_vacuum_modules}), one sees that the difficulty here lies in how one would quantise the usual affine Heisenberg algebra in terms of the R-matrix being considered. When the R-matrix at play is rational and of type $\sfA$ (i.e. that which gives rise to the Yangian $\calY(\sl_N)$), such a quantum Heisenberg algebra has already been studied by Butorac and Kozic in \cite{butorac_kozic_quantum_heisenberg_algebras_associated_with_type_A_rational_R_matrices}, so we shall rely on their work as a schematic for constructing quantum Heisenberg algebras associated to the trigonometric R-matrix $\calR$. Following their approach, the quantum Heisenberg algebra that we will obtain at the end of this subsection will be generated by the coefficients of certain quantum vertex algebras.
+
+        Now, onto the technical details. We recall first of all that when regarded merely as an associative $\bbC[\![\hbar]\!]$-algebra, the quantum loop algebra $\calU_{\hbar}(\calR)$ is isomorphic to $\calU(\Loop^{\sigma}\g_N)[\![\hbar]\!]$. For the Lie algebra $\Loop^{\sigma}\g_N$, the appropriate choice of Fock space is:
+            $$\boson := \Sym( \Loop^- \h_N ) \cdot \ket{0}$$
+        with $\h_N \subset \g_N$ being the Cartan subalgebra and $\Loop^- \h_N := t^{-1} \h_N[t^{-1}]$, so let us begin by taking the underlying $\bbC[\![\hbar]\!]$-module of the quantum bosonic Fock space of $\calU_{\hbar}(\calR)$ to be:
+            $$\boson_{\hbar} := \Sym( \Loop^- \h_N )[\![\hbar]\!] \cdot \ket{0}$$
+        We note right away that this $\bbC[\![\hbar]\!]$-module naturally carries the $\hbar$-adic topology, with respect to which it is separated and complete. Moreover, it is $\bbC[\![\hbar]\!]$-torsion-free, thus making it topologically free as a topological $\bbC[\![\hbar]\!]$-module. Additionally, note that we indeed have:
+            $$\boson_{\hbar}/\hbar \boson_{\hbar} \cong \boson$$
+        as $\bbC[\![\hbar]\!]$-modules; had this not been true, any quantum vertex algebra structure that one may endow $\boson_{\hbar}$ with would have no chance of degenerating to the usual vertex algebra structure on $\boson$.
+
+        Next, in order to construct creation and annihilation operators on $\boson_{\hbar}$, we take inspiration from the following phenomenon that occurs in the classical case.
+        \begin{remark}[Classical Heisenberg degeneration] \label{remark: classical_heisenberg_degeneration}
+            Suppose for a moment that $\g$ is an arbitrary finite-dimensional simple Lie algebra, fix a non-degenerate, symmetric, and invariant bilinear form $(-, -)_{\g}$ thereon, along with a Cartan subalgebra $\h \subset \g$. Let us also pick a basis $\{x_a\}_{a = 1}^{\dim \g}$ that is orthonormal with respect to the bilinear form $(-, -)_{\g}$. Next, form the affinisation with respect to $(-, -)_{\g}$:
+                $$\tilde{\g} := \Loop \g \oplus \bbC c_{\aff}$$
+            (which is \textit{a priori} isomorphic to the universal central extension of $\Loop \g$; see \cite{kassel_universal_central_extensions_of_lie_algebras}). We think of this Lie algebra as being spanned by the symbol $c_{\aff}$, along with the coefficients of the series:
+                $$x_a(z) := \sum_{r \in \Z} x_a[r] z^{-r - 1}$$
+            and the commutation relations between them are:
+                $$[x_a(w), x_b(z)]_{\tilde{\g}} = $$
+        \end{remark}
+        
+        \begin{proposition}
+            
+        \end{proposition}
+            \begin{proof}
+                
+            \end{proof}
+
+        Let us now establish a quantised analogue of the so-called Wakimoto homomorphism. Classically, it is a vertex algebra homomorphism from the affine vertex algebra to the Heisenberg vertex algebra. \textit{A priori}, this homomorphism is injective, and thus it gives us a description of the vertex operators generating the affine vertex algebra in terms of the vertex operators generating the Heisenberg vertex algebra, and hence a description of the currents generating the underlying affine Lie algebra in terms of differential operators on the bosonic Fock space; see \cite{frenkel_ben_zvi_vertex_algebras_and_algebraic_curves} for more details. We would now like to make an attempt at quantising the classical Wakimoto homomorphism mentioned above - with respect to the previously fixed R-matrix $\calR$ - in such a way that the classical limit coincides with said vertex algebra homomorphism. The purpose of doing this is the same as in the classical case, namely to describe the quantum vertex operators generating the quantum affine vertex algebra arising from $\calR$ in terms of the quantum vertex operators that generate the quantum Heisenberg algebra associated to the same R-matrix.
+        \begin{proposition}[Quantum Wakimoto homomorphism] \label{prop: quantum_wakimoto_homomorphism}
+            
+        \end{proposition}
+            \begin{proof}
+                
+            \end{proof}
+        \begin{corollary}[Quantum Wakimoto modules] \label{coro: quantum_wakimoto_modules}
+            
+        \end{corollary}
+            \begin{proof}
+                
+            \end{proof}

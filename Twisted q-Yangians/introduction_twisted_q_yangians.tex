@@ -1,6 +1,18 @@
 \section{Introduction}
     \subsection{Notations}
-        Let $\sfX$ be an affine Dynkin diagram - untwisted or twisted - of a classical type (see \cite[Chapter 4, Tables Aff 2 and 3, p. 55]{kac_infinite_dimensional_lie_algebras}), let $\g(\sfX)$ be the associated (affine) Kac-Moody algebra, let $\g_N \subset \sl_N$ be the underlying finite-dimensional simple Lie algebra, and let $\bar{\sfX}$ be the Dynkin diagram associated to $\g_N$. Let $\sigma$ be a finite-order automorphism of $\bar{\sfX}$. This gives rise to a Lie algebra automorphism of $\g_N$, which in turn gives rise to an automorphism of the loop algebra $\Loop\g_N \cong \g_N \tensor_{\bbC} \bbC[t^{\pm 1}]$. Then, write $\Loop^{\sigma}\g_N$ for the fixed-point subalgebra; this is the Lie algebra that we will be mainly working with.
+        Let $\sfX$ be an affine Dynkin diagram - untwisted or twisted - of a classical type (see \cite[Chapter 4, Tables Aff 2 and 3, p. 55]{kac_infinite_dimensional_lie_algebras}), let $\g(\sfX)$ be the associated (affine) Kac-Moody algebra, let $\g_N \subset \sl_N$ be the underlying finite-dimensional simple Lie algebra, and let $\bar{\sfX}$ be the Dynkin diagram associated to $\g_N$.
+        
+        Additionally, let:
+            $$\Loop: \bbC\-\Lie\Alg \to \bbC\-\Lie\Alg$$
+        be the looping functor, mapping Lie algebras $\a$ to their \textbf{loop algebras} given by\footnote{More generally, for any commutative algebra $A$, there exists a current algebra functor $- \tensor A: \bbC\-\Lie\Alg \to \bbC\-\Lie\Alg$, with the Lie bracket on $\a \tensor A$ given in the same manner for all Lie algebras $\a$. However, we are only interested in the case $A = \bbC[t^{\pm 1}]$ here.}:
+            $$\Loop \a := \a \tensor_{\bbC} \bbC[t^{\pm 1}]$$
+        on which the Lie bracket is given by:
+            $$[x \tensor f, y \tensor g]_{\Loop \a} := [x, y]_{\a} \tensor fg$$
+        for all $x, y \in \a$ and all $f, g \in \bbC[t^{\pm 1}]$; for notational simplicity, we will abbreviate $xf := x \tensor f$ for $x \in \a$ and $f \in \bbC[t^{\pm 1}]$.
+        
+        Next, let $\sigma$ be a finite-order automorphism of $\bar{\sfX}$. This gives rise to a Lie algebra automorphism of $\g_N$, which in turn gives rise to an automorphism of the loop algebra $\Loop\g_N$; in fact, this automorphism is involutive \textit{a priori}. Then, write:
+            $$\Loop^{\sigma}\g_N$$
+        for the fixed-point subalgebra; this is the Lie algebra that we will be mainly working with.
 
         If $A$ is an algebra (not even necessarily associative or unital) with multiplication $\mu: A \tensor A \to A$, then its \textbf{opposite algebra} shall be denoted by $A^{\op}$. This object has the same underlying vector space, but the opposite multiplication is now given by $\mu^{\op} := \mu \circ \tau_{1, 2}$, wherein $\tau_{1, 2}: A \tensor A \xrightarrow[]{\cong} A \tensor A$ is the isomorphism given by $\tau_{1, 2}(x \tensor y) := y \tensor x$. Likewise, if $C$ is a coalgebra with comultiplication $\Delta: C \to C \tensor C$, then its \textbf{(co-)opposite} shall be denoted by $C^{\cop}$; the co-opposite multiplication is given by $\Delta^{\cop} := \tau_{1, 2} \circ \Delta$. These notions generalise in a straightforward manner to the setting of topological (co)algebras.
 
@@ -17,22 +29,20 @@
 
     \subsection{Overview}
         Our goal here is to generalise the results of \cite{molev_ragoucy_sorba_twisted_q_yangians_type_A}. Therein, the authors constructed the so-called \say{twisted $q$-Yangians}, which are certain coideal subalgebras of the quantum loop algebras:
-            $$\calU_q(\Loop\sl_N, \calR)$$
+            $$\calU_{\hbar}(\Loop\sl_N, \calR)$$
         given in the R-matrix presentation. These twisted $q$-Yangians are obtained by replacing the rational solutions to the QYBE\footnote{Quantum Yang-Baxter equation.} in the twisted Yangian construction of Olshanskii (see \cite{olshanski_twisted_yangians_and_infinite_dimensional_classical_lie_algebras} or \cite[Chapter 2]{molev_yangians_and_classical_lie_algebras}) with trigonometric ones, that being the universal R-matrix of type $\sfA_{\ell}^{(1)}$ that we are denoting here by: 
             $$\calR$$
         Doing so gives rise to trigonometric-type solutions:
             $$\calK$$
-        to the bQYBE\footnote{Boundary quantum Yang-Baxter equation.}, thereby obtaining new coideal subalgebras of $\calU_q(\Loop\sl_N)$ different from the usual quantum symmetric pairs from the works of Letzter, Kolb, and others. We would now like to generalise this construction to quantum loop algebras obtained from R-matrices of all remaining non-exceptional affine types (in the Kac classification, which can be found e.g. in \cite[Chapter 4]{kac_infinite_dimensional_lie_algebras}). 
+        to the bQYBE\footnote{Boundary quantum Yang-Baxter equation.}, thereby obtaining new coideal subalgebras of $\calU_{\hbar}(\Loop\sl_N, \calR)$ different from the usual quantum symmetric pairs from the works of Letzter, Kolb, and others. We would now like to generalise this construction to quantum loop algebras obtained from R-matrices of all remaining non-exceptional affine types (in the Kac classification, which can be found e.g. in \cite[Chapter 4]{kac_infinite_dimensional_lie_algebras}). 
 
     \subsection{\texorpdfstring{Defining twisted $q$-Yangians}{}}
         Let $\g_N \subset \sl_N$ be a finite-dimensional simple Lie algebra of a classical type in the Cartan-Killing classification.
     
-        To begin, unlike in \cite{molev_ragoucy_sorba_twisted_q_yangians_type_A} where the authors defined twisted $q$-Yangians embeddedly as associative subalgebras of $\calU_q(\Loop\sl_N)$ first of all, let us follow \cite{regelskis_vlaar_reflection_matrices_coideal_subalgebras} and define twisted $q$-Yangians as reflection algebras in the sense of \cite{guay_regelskis_twisted_yangians_for_symmetric_pairs_of_types_BCD}, but with the rational matrices therein replaced by trigonometric ones. As reflection algebras are determined by solutions:
-            $$\calK(w)$$
-        to the bQYBE (cf. equation \eqref{equation: multiplicative_spectral_bQYBE}), let us denote these twisted $q$-Yangians defined by:
-            $$\calY_q(\calK)$$
-        It is known from \cite[Subsection 10.2]{regelskis_vlaar_reflection_matrices_coideal_subalgebras}, that these abstract algebras defined via generators and relations embed as subalgebras into the quantum loop algebras $\calU_q(\Loop^{\sigma}\g_N)$. However, what is non-trivial is proving that those embeddings also identify $\calY_q(\calK)$ as coideals of the quantum loop algebras. Now, there have already been certain coideal subalgebras of $\calU_q(\Loop^{\sigma}\g_N)$ that have given as quantum pseudo-symmetric pairs (pseudo-QSPs) and then classified by Regelskis and Vlaar in \cite[Section 8]{regelskis_vlaar_reflection_matrices_coideal_subalgebras}. Thus, we shall follow the approach of \cite{guay_regelskis_twisted_yangians_for_symmetric_pairs_of_types_BCD} and seek an identification of the twisted $q$-Yangians with those pseudo-QSPs, thus identifying twisted $q$-Yangians as coideal subalgebras of quantum loop algebras. As for the technicalities, we shall approach the problem by establishing PBW bases for the twisted $q$-Yangians, and then comparing those bases with the PBW bases of the pseudo-QSPs of Regleskis and Vlaar.
+        To begin, unlike in \cite{molev_ragoucy_sorba_twisted_q_yangians_type_A} where the authors defined twisted $q$-Yangians embeddedly as associative subalgebras of $\calU_{\hbar}(\Loop\sl_N)$ first of all, let us follow \cite{regelskis_vlaar_reflection_matrices_coideal_subalgebras} and define twisted $q$-Yangians as reflection algebras in the sense of \cite{guay_regelskis_twisted_yangians_for_symmetric_pairs_of_types_BCD}, but with the rational matrices therein replaced by trigonometric ones. As reflection algebras are determined by solutions:
+            $$\calK(u)$$
+        to the bQYBE, let us denote these twisted $q$-Yangians defined by:
+            $$\calY_{\hbar}(\calK)$$
+        It is known from \cite[Subsection 10.2]{regelskis_vlaar_reflection_matrices_coideal_subalgebras}, that these abstract algebras defined via generators and relations embed as subalgebras into the quantum loop algebras $\calU_{\hbar}(\Loop^{\sigma}\g_N, \calR)$. It is worth noting that this embedding is given with respect to the R-matrix presentation, and they identify $\calY_{\hbar}(\calK)$ as coideals of the quantum loop algebras, albeit this is a non-trivial fact. Now, there have already been certain coideal subalgebras of $\calU_{\hbar}(\Loop^{\sigma}\g_N)$ that have given as quantum pseudo-symmetric pairs (pseudo-QSPs) and then classified by Regelskis and Vlaar in \cite[Section 8]{regelskis_vlaar_reflection_matrices_coideal_subalgebras}. Thus, we shall follow the approach of \cite{guay_regelskis_twisted_yangians_for_symmetric_pairs_of_types_BCD} and seek an identification of the twisted $q$-Yangians with those pseudo-QSPs, thus identifying twisted $q$-Yangians as coideal subalgebras of quantum loop algebras.
 
-        \todo[inline]{Centres of twisted $q$-Yangians via qVOAs. I think this has only been done (by Molev, Frappat, Kozic, etc.) in type $\sfA$.}
-
-        Next, we will see if the constructed twisted $q$-Yangians admit evaluation homomorphisms to the finite-type quantum groups $\calU_q(\g_N)$. Said evaluation homomorphisms are to be compatible with the specialisation $q \to 1$ as well, which is to say that after specialisation, one ought to recover the usual evaluation homomorphisms of the usual twisted Yangians.
+        Next, we will see if the constructed twisted $q$-Yangians admit evaluation homomorphisms to the finite-type quantum groups $\calU_{\hbar}(\g_N)$. Said evaluation homomorphisms are to be compatible with the specialisation $q \to 1$ as well, which is to say that after specialisation, one ought to recover the usual evaluation homomorphisms of the usual twisted Yangians.
