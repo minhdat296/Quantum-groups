@@ -1,48 +1,113 @@
 \section{Introduction}
     \subsection{Notations}
-        Let $\sfX$ be an affine Dynkin diagram - untwisted or twisted - of a classical type (see \cite[Chapter 4, Tables Aff 2 and 3, p. 55]{kac_infinite_dimensional_lie_algebras}), let $\g(\sfX)$ be the associated (affine) Kac-Moody algebra, let $\g_N \subset \sl_N$ be the underlying finite-dimensional simple Lie algebra, and let $\bar{\sfX}$ be the Dynkin diagram associated to $\g_N$.
-        
-        Additionally, let:
-            $$\Loop: \bbC\-\Lie\Alg \to \bbC\-\Lie\Alg$$
-        be the looping functor, mapping Lie algebras $\a$ to their \textbf{loop algebras} given by\footnote{More generally, for any commutative algebra $A$, there exists a current algebra functor $- \tensor A: \bbC\-\Lie\Alg \to \bbC\-\Lie\Alg$, with the Lie bracket on $\a \tensor A$ given in the same manner for all Lie algebras $\a$. However, we are only interested in the case $A = \bbC[t^{\pm 1}]$ here.}:
-            $$\Loop \a := \a \tensor_{\bbC} \bbC[t^{\pm 1}]$$
-        on which the Lie bracket is given by:
-            $$[x \tensor f, y \tensor g]_{\Loop \a} := [x, y]_{\a} \tensor fg$$
-        for all $x, y \in \a$ and all $f, g \in \bbC[t^{\pm 1}]$; for notational simplicity, we will abbreviate $xf := x \tensor f$ for $x \in \a$ and $f \in \bbC[t^{\pm 1}]$.
-        
-        Next, let $\sigma$ be a finite-order automorphism of $\bar{\sfX}$. This gives rise to a Lie algebra automorphism of $\g_N$, which in turn gives rise to an automorphism of the loop algebra $\Loop\g_N$; in fact, this automorphism is involutive \textit{a priori}. Then, write:
-            $$\Loop^{\sigma}\g_N$$
-        for the fixed-point subalgebra; this is the Lie algebra that we will be mainly working with.
+        \subsubsection{Formal power series}
+            All power series are understood in the formal sense. Moreover, transcendental expressions shall be used as abbreviations for their corresponding formal Taylor series around $0$; for instance, we have:
+                $$e^{a(z)} := \sum_{r \geq 0} \frac{1}{r!} ( a(z) )^r \in \bbC[\![z^{\pm 1}]\!]$$
+            for any $a(z) \in A[z^{\pm 1}]$ with coefficients in some associative algebra $A$.
 
-        If $A$ is an algebra (not even necessarily associative or unital) with multiplication $\mu: A \tensor A \to A$, then its \textbf{opposite algebra} shall be denoted by $A^{\op}$. This object has the same underlying vector space, but the opposite multiplication is now given by $\mu^{\op} := \mu \circ \tau_{1, 2}$, wherein $\tau_{1, 2}: A \tensor A \xrightarrow[]{\cong} A \tensor A$ is the isomorphism given by $\tau_{1, 2}(x \tensor y) := y \tensor x$. Likewise, if $C$ is a coalgebra with comultiplication $\Delta: C \to C \tensor C$, then its \textbf{(co-)opposite} shall be denoted by $C^{\cop}$; the co-opposite multiplication is given by $\Delta^{\cop} := \tau_{1, 2} \circ \Delta$. These notions generalise in a straightforward manner to the setting of topological (co)algebras.
+            Given a formal power series $a(z) \in A[\![z^{\pm 1}]\!]$ with coefficients in some associative algebra $A$, we shall write $a[r]$ ($r \in \Z$) for the \textbf{Fourier modes} (i.e. coefficients) thereof, which are such that:
+                $$a(z) = \sum_{r \in \Z} a[r] z^{-r - 1}$$
+            
+            Note also that while $\bbC[\![z]\!]$ and $\bbC(\!(z)\!)$ are commutative algebras (the latter is even a field), $\bbC[\![z^{\pm 1}]\!]$ is not even an associative algebra; the reason is that in general, an expression such as $\left( \sum_{r \in \Z} a[r] z^r \right) \left( \sum_{s \in \Z} b[s] z^s \right)$ may not be well-defined.
+    
+        \subsubsection{Affine (Kac-Moody) algebras and (twisted) loop algebras} 
+            All throughout:
+                $$\g_N \subseteq \gl_N$$
+            will be used to denote a finite-dimensional simple Lie algebra over $\bbC$ that is of one of the classical types in the Cartan-Killing Classification; equivalently, suppose that:
+                $$
+                    \g_N =
+                    \begin{cases}
+                        \sl_N, \quad N \geq 2
+                        \\
+                        \o_{2n + 1}, \quad N = 2n + 1, \quad n \geq 1
+                        \\
+                        \sp_{2n}, \quad N = 2n, \quad n \geq 1
+                        \\
+                        \o_{2n}, \quad N = 2n, \quad n \geq 1
+                    \end{cases}
+                $$
+            and respectively, we say that $\g_N$ is linear, odd-orthogonal, symplectic, or even-orthogonal. This Lie algebra has a natural action on $\bbV_N := \bbC^{\oplus N}$ (the so-called \say{vector representation}), which shall always be equipped with the standard basis:
+                $$\{e_i\}_{1 \leq i \leq N}$$
+            consisting of vectors with $1$ in the $i^{th}$ entry and $0$ elsewhere. By finite-dimensionality, we identify:
+                $$\bbV_N^{\tensor 2} \xrightarrow[]{\cong} \End(\bbV_N)$$
+            and then write:
+                $$E_{i, j}$$
+            for the image of $e_i \tensor e_j$ under the identification above; explicitly, $E_{i, j}$ is the $N \x N$ matrix with $1$ in the $(i, j)^{th}$ entry and $0$ elsewhere. Moreover, recall that $\bbV_N$ comes equipped with a natural $\g_N$-invariant and non-degenerate bilinear form that we shall denote by:
+                $$\eta$$
+            This form is symmetric for the linear type $\sfA$ and orthogonal types $\sfB, \sfD$, while skew-symmetric for the symplectic type $\sfC$.
+        
+            \begin{itemize}
+                \item Let $\sfX$ be an affine Dynkin diagram - untwisted or twisted - of a classical type (see \cite[Chapter 4, Tables Aff 2 and 3, p. 55]{kac_infinite_dimensional_lie_algebras}), let $\g(\sfX)$ be the associated (affine) Kac-Moody algebra, let $\g_N \subset \sl_N$ be the underlying finite-dimensional simple Lie algebra, and let $\bar{\sfX}$ be the Dynkin diagram associated to $\g_N$.
+     
+                \item Additionally, let:
+                    $$\Loop: \bbC\-\Lie\Alg \to \bbC\-\Lie\Alg$$
+                be the looping functor, mapping Lie algebras $\a$ to their \textbf{loop algebras} given by\footnote{More generally, for any commutative algebra $A$, there exists a current algebra functor $- \tensor A: \bbC\-\Lie\Alg \to \bbC\-\Lie\Alg$, with the Lie bracket on $\a \tensor A$ given in the same manner for all Lie algebras $\a$. However, we are only interested in the case $A = \bbC[t^{\pm 1}]$ here.}:
+                    $$\Loop \a := \a \tensor_{\bbC} \bbC[t^{\pm 1}]$$
+                on which the Lie bracket is given by:
+                    $$[x \tensor f, y \tensor g]_{\Loop \a} := [x, y]_{\a} \tensor fg$$
+                for all $x, y \in \a$ and all $f, g \in \bbC[t^{\pm 1}]$; for notational simplicity, we will abbreviate $xf := x \tensor f$ for $x \in \a$ and $f \in \bbC[t^{\pm 1}]$.
+    
+                \item The \textit{untwisted} affine Kac-Moody algebra associated to $\g_N$ is denoted by $\hat{\g}_N$, while the affinisation of $\g_N$ is denoted by $\tilde{\g}_N$. \textit{A priori}, we have $\hat{\g}_N \cong \uce( \Loop \g_N ) \rtimes \bbC D_{\aff}$ and $\tilde{\g}_N \cong \uce( \Loop \g_N ) \cong \Loop \g_N \oplus \bbC c_{\aff} \cong \hat{\g}_N'$. The central generator $c_{\aff}$ is usually referred to as the central charge, while $D_{\aff} \in \der(\tilde{\g}_N)$ is a derivation given by $[D_{\aff}, xf]_{\hat{\g}_N} := x t \frac{df}{dt}$ for all $x \in \g_N$ and $f \in \bbC[t^{\pm 1}]$, and $[D_{\aff}, c_{\aff}] = 0$. For more details, see \cite[Chapter 7]{kac_infinite_dimensional_lie_algebras}.
+                
+                \item Next, let $\sigma$ be a finite-order automorphism of $\bar{\sfX}$. This gives rise to a Lie algebra automorphism of $\g_N$, which in turn gives rise to an automorphism of the loop algebra $\Loop\g_N$; in fact, this automorphism is involutive \textit{a priori}. Then, write:
+                    $$\Loop^{\sigma}\g_N$$
+                for the fixed-point subalgebra; this is the Lie algebra that we will be mainly working with. The involution $\sigma$ is sometimes referred to as the \textbf{twisting}.
+            \end{itemize}
+    
+            Let us also set up some conventions around root systems of Kac-Moody algebras.
+            \begin{itemize}
+                \item Suppose that $\simpleroots$ is some finite set (to be thought of as indexing the simple roots), and then let $\g$ be the Kac-Moody algebra associated to a general indecomposable symmetrisable Cartan matrix $C := (C_{i, j})_{i, j \in \simpleroots}$ with set of Chevalley-Serre generators $\{h_i, e_i^{\pm}\}_{i \in \simpleroots}$ (as in \cite[Chapter 1]{kac_infinite_dimensional_lie_algebras}). Let $\h := \bigoplus_{i \in \simpleroots} \bbC h_i \subset \g$ be the standard Cartan subalgebra\footnote{By \cite{kac_peterson_infinite_flag_varieties_and_conjugacy_of_cartan_subalgebras}, we know that such subalgebras are conjugate to one another, so any choice is equally valid.} with respect to the aforementioned generators.
+            
+                \item Next, endow $\g$ with the $\Z$-grading\footnote{In \cite{kac_infinite_dimensional_lie_algebras}, this is referred to as the \say{principal grading}.} given by $\deg h_i := 0$ and $\deg e_i^{\pm} := \pm 1$, and then let $(-, -)_{\g}$ be the invariant and symmetric bilinear form on $\g$ of total degree $0$ with respect to said $\Z$-grading, normalised so that $(h_i, h_j) = 2\delta_{i, j}$; additionally, let $\n^{\pm} \subset \g$ be the Lie subalgebras generated by the sets $\{e_i^{\pm}\}_{i \in \simpleroots}$, and let $\b^{\pm} := \h \oplus \n^{\pm}$ be the corresponding Borel subalgebras.
+                
+                \item Let $\g' := [\g, \g]$ be the derived subalgebra, which \textit{a priori} is isomorphic to the Lie subalgebra of $\g$ generated by the set $\{e_i^-, e_i^+(\}_{i \in \simpleroots}$, and then let $\h' := \h \cap \g'$. 
+            \end{itemize}
 
-        Given vector spaces $\{V_i\}_{1 \leq i \leq n}$ and an operator with spectral parameters:
-            $$T(z_1, ..., z_n) \in \End(V_1 \tensor ... \tensor V_n)(\!(z_1^{-1}, ..., z_n^{-1})\!)$$
-        along with an auxiliary space $V_0$, then for:
-            $$\{i_0\} := \{0, ..., n\} \setminus \{i_1, ..., i_n\}$$
-        we will write:
-            $$T_{i_1, ..., i_n}(z_1, ..., z_n) \in \End\left(V_0 \tensor (V_1 \tensor ... \tensor V_n)\right)(\!(z_1^{-1}, ..., z_n^{-1})\!)$$
-        for the operator with spectral parameter on $\bigotimes_{i = 0}^n V_i$ which acts as $\id_{V_0}$ on the $i_0^{th}$ tensor factor and as $T(z_1, ..., z_n)$ on the remaining ones. In particular, we will usually be concerned with operators:
-            $$R(z_1, z_2) \in \End(V_1 \tensor V_2)(\!(z_1^{-1}, z_2^{-1})\!)$$
-            $$K(z) \in \End(V)(\!(z^{-1})\!)$$
-        appearing in say, the quantum Yang-Baxter equation \eqref{equation: additive_spectral_QYBE} or the boundary quantum Yang-Baxter equation \eqref{equation: additive_spectral_bQYBE}.
+        \subsubsection{Trigonometric and rational quantum loop algebras}
+            Suppose that $\calR(u, v)$ is a solution to the spectral quantum Yang-Baxter equation (QYBE) of type $\sfX$. According to the Belavin-Drinfeld classification, there are three possible types of solutions, namely the trigonometric, rational, and elliptic types. We are interested in the first two types. For more information, see subsection \ref{subsection: trigonometric_and_rational_loop_QUEs}.
+            \begin{itemize}
+                \item If this solution is of trigonometric type, then the corresponding formal quantum loop algebra over $\bbC[\![\hbar]\!]$ given via the R-matrix presentation will be denoted by:
+                    $$\calU_{\hbar}(\calR)$$
+                \item If the solution is of rational type, then the corresponding formal quantum group over $\bbC[\![\hbar]\!]$ will be denoted by:
+                    $$\DY_{\hbar}(\calR)$$
+                This is commonly referred to as the \textbf{(formal) double Yangian} associated to $\calR$.
+            \end{itemize}
+
+            When these algebras are given in the (equivalent) Drinfeld current or Drinfeld-Jimbo presentation (also known as the Kac-Moody presentation), we will instead write:
+                $$\calU_{\hbar}^{\current}(\Loop^{\sigma}\g_N) \quad, \quad \calU_{\hbar}^{\KM}(\Loop^{\sigma}\g_N)$$
+            and:
+                $$\DY_{\hbar}^{\current}(\g_N) \quad, \quad \DY_{\hbar}^{\KM}(\g_N)$$
+            respectively, if necessary.
+            \begin{remark}
+                In the rational case, the double Yangian actually does not depend on the twisting $\sigma$, which is why we do not need to specify it.
+            \end{remark}
+
+            A potentially confusing notation is:
+                $$\DX_{\hbar}(\calR)$$
+            which appears, for instance, in definitions \ref{def: extended_loop_QUEs_R_matrix_presentation} and \ref{def: vacuum_modules}. This is used in both the trigonometric and rational contexts, but as it is only an auxiliary algebra, we feel that it is not necessary to specify the type of the R-matrix in general when dealing with this algebra.
+
+        \subsubsection{Quantum Kac-Moody algebras and quantum affine algebras}
+
+        \subsubsection{Opposite (co)algebras}
+            If $A$ is an algebra (not even necessarily associative or unital) with multiplication $\mu: A \tensor A \to A$, then its \textbf{opposite algebra} shall be denoted by $A^{\op}$. This object has the same underlying vector space, but the opposite multiplication is now given by $\mu^{\op} := \mu \circ \tau_{1, 2}$, wherein $\tau_{1, 2}: A \tensor A \xrightarrow[]{\cong} A \tensor A$ is the isomorphism given by $\tau_{1, 2}(x \tensor y) := y \tensor x$. Likewise, if $C$ is a coalgebra with comultiplication $\Delta: C \to C \tensor C$, then its \textbf{(co-)opposite} shall be denoted by $C^{\cop}$; the co-opposite multiplication is given by $\Delta^{\cop} := \tau_{1, 2} \circ \Delta$. These notions generalise in a straightforward manner to the setting of topological (co)algebras.
+
+        \subsubsection{Tensor notations}
+            \begin{itemize}
+                \item Given vector spaces $\{V_i\}_{1 \leq i \leq n}$ and an operator with spectral parameters:
+                    $$T(z_1, ..., z_n) \in \End(V_1 \tensor ... \tensor V_n)(\!(z_1^{-1}, ..., z_n^{-1})\!)$$
+                along with an auxiliary space $V_0$, then for:
+                    $$\{i_0\} := \{0, ..., n\} \setminus \{i_1, ..., i_n\}$$
+                we will write:
+                    $$T_{i_1, ..., i_n}(z_1, ..., z_n) \in \End\left(V_0 \tensor (V_1 \tensor ... \tensor V_n)\right)(\!(z_1^{-1}, ..., z_n^{-1})\!)$$
+                for the operator with spectral parameter on $\bigotimes_{i = 0}^n V_i$ which acts as $\id_{V_0}$ on the $i_0^{th}$ tensor factor and as $T(z_1, ..., z_n)$ on the remaining ones. In particular, we will usually be concerned with operators:
+                    $$R(z_1, z_2) \in \End(V_1 \tensor V_2)(\!(z_1^{-1}, z_2^{-1})\!)$$
+                    $$K(z) \in \End(V)(\!(z^{-1})\!)$$
+                appearing in say, the quantum Yang-Baxter equation \eqref{equation: additive_spectral_QYBE} or the boundary quantum Yang-Baxter equation \eqref{equation: additive_spectral_bQYBE}.
+                \item Given an algebra $A$ and an implicitly given representation $A \to \End(V)$, the operator on $V$ corresponding to an element $x \in A$ will be denoted by:
+                    $$x_V$$
+            \end{itemize}
 
     \subsection{Overview}
-        Our goal here is to generalise the results of \cite{molev_ragoucy_sorba_twisted_q_yangians_type_A}. Therein, the authors constructed the so-called \say{twisted $q$-Yangians}, which are certain coideal subalgebras of the quantum loop algebras:
-            $$\calU_{\hbar}(\Loop\sl_N, \calR)$$
-        given in the R-matrix presentation. These twisted $q$-Yangians are obtained by replacing the rational solutions to the QYBE\footnote{Quantum Yang-Baxter equation.} in the twisted Yangian construction of Olshanskii (see \cite{olshanski_twisted_yangians_and_infinite_dimensional_classical_lie_algebras} or \cite[Chapter 2]{molev_yangians_and_classical_lie_algebras}) with trigonometric ones, that being the universal R-matrix of type $\sfA_{\ell}^{(1)}$ that we are denoting here by: 
-            $$\calR$$
-        Doing so gives rise to trigonometric-type solutions:
-            $$\calK$$
-        to the bQYBE\footnote{Boundary quantum Yang-Baxter equation.}, thereby obtaining new coideal subalgebras of $\calU_{\hbar}(\Loop\sl_N, \calR)$ different from the usual quantum symmetric pairs from the works of Letzter, Kolb, and others. We would now like to generalise this construction to quantum loop algebras obtained from R-matrices of all remaining non-exceptional affine types (in the Kac classification, which can be found e.g. in \cite[Chapter 4]{kac_infinite_dimensional_lie_algebras}). 
 
     \subsection{\texorpdfstring{Defining twisted $q$-Yangians}{}}
-        Let $\g_N \subset \sl_N$ be a finite-dimensional simple Lie algebra of a classical type in the Cartan-Killing classification.
-    
-        To begin, unlike in \cite{molev_ragoucy_sorba_twisted_q_yangians_type_A} where the authors defined twisted $q$-Yangians embeddedly as associative subalgebras of $\calU_{\hbar}(\Loop\sl_N)$ first of all, let us follow \cite{regelskis_vlaar_reflection_matrices_coideal_subalgebras} and define twisted $q$-Yangians as reflection algebras in the sense of \cite{guay_regelskis_twisted_yangians_for_symmetric_pairs_of_types_BCD}, but with the rational matrices therein replaced by trigonometric ones. As reflection algebras are determined by solutions:
-            $$\calK(u)$$
-        to the bQYBE, let us denote these twisted $q$-Yangians defined by:
-            $$\calY_{\hbar}(\calK)$$
-        It is known from \cite[Subsection 10.2]{regelskis_vlaar_reflection_matrices_coideal_subalgebras}, that these abstract algebras defined via generators and relations embed as subalgebras into the quantum loop algebras $\calU_{\hbar}(\Loop^{\sigma}\g_N, \calR)$. It is worth noting that this embedding is given with respect to the R-matrix presentation, and they identify $\calY_{\hbar}(\calK)$ as coideals of the quantum loop algebras, albeit this is a non-trivial fact. Now, there have already been certain coideal subalgebras of $\calU_{\hbar}(\Loop^{\sigma}\g_N)$ that have given as quantum pseudo-symmetric pairs (pseudo-QSPs) and then classified by Regelskis and Vlaar in \cite[Section 8]{regelskis_vlaar_reflection_matrices_coideal_subalgebras}. Thus, we shall follow the approach of \cite{guay_regelskis_twisted_yangians_for_symmetric_pairs_of_types_BCD} and seek an identification of the twisted $q$-Yangians with those pseudo-QSPs, thus identifying twisted $q$-Yangians as coideal subalgebras of quantum loop algebras.
-
-        Next, we will see if the constructed twisted $q$-Yangians admit evaluation homomorphisms to the finite-type quantum groups $\calU_{\hbar}(\g_N)$. Said evaluation homomorphisms are to be compatible with the specialisation $q \to 1$ as well, which is to say that after specialisation, one ought to recover the usual evaluation homomorphisms of the usual twisted Yangians.
+        

@@ -1,38 +1,18 @@
 \section{Quantum vertex algebras} \label{section: quantum_vertex_algebras}
     \subsection{Non-local, braided, and quantum vertex algebras}
-        If $\scrV$ is a $\bbC[\![\hbar]\!]$-module then the submodule consisting of topologically nilpotent elements (i.e., elements on which the pseudo-uniformiser $\hbar$ of the underlying adic ring acts topologically nilpotently) will be denoted by $\scrV^{\circ}$. 
-    
-        We begin by recalling the definition of $\hbar$-adic quantum vertex algebras in the sense of \cite{etingof_kazhdan_quantisation_5}. 
-
-        \begin{definition}[Formal quantum vertex algebras (qVAs)] \label{def: formal_quantum_vertex_algebras}
-            Consider a topologically free $\bbC[\![\hbar]\!]$-module:
-                $$\scrV$$
-            with a distinguished element:
-                $$\ket{0} \in \scrV$$
-            identified (this is the so-called \textbf{vacuum vector}), and a \textbf{state-field correspondence}:
+        We begin by recalling the definition of quantum vertex algebras over $\bbC[\![\hbar]\!]$ in the sense of \cite{etingof_kazhdan_quantisation_5}. Start with a topologically free $\bbC[\![\hbar]\!]$-module $\scrV$, in which a distinguished element $\ket{0} \in \scrV$, the so-called \textbf{vacuum vector}, is identified. Next, we equip it with a \textbf{state-field correspondence}:
             \begin{equation} \label{equation: state_field_correspondence}
-                Y(-, z): \scrV \hattensor_{\bbC[\![\hbar]\!]} \scrV \to \scrV^{\circ}(\!(z)\!)
+                Y(-, z): \scrV \to \End_{\bbC[\![\hbar]\!]}(\scrV)(\!(z)\!)
             \end{equation}
-            which is just a continuous $\bbC[\![\hbar]\!]$-linear map for now.
-            \begin{enumerate}
-                \item If the state-field correspondence \eqref{equation: state_field_correspondence} satisfies \:
-                \begin{itemize}
-                    \item the \textbf{vacuum condition}, which reads:
-                    \item as well as \textbf{weak associativity}, which reads:
-                \end{itemize}
-                then we will say that $\scrV$ is a \textbf{non-local vertex algebra}.
-                
-                \todo[inline]{Non-local vertex algebras}
-                
-                \item If the weak associativity condition in the previous definition is strengthened to \textbf{braided associativity}\footnote{This is also called \say{S-locality}, but using this terminology will cause clashes later on.}, then we will obtain the notion of \textbf{braided vertex algebras}\footnote{Also called \say{weak quantum vertex algebras.}}. The condition reads:
-                
-                \todo[inline]{Braided vertex algebras}
-                
-                \item Finally, if the braiding satisfies the QYBE, then the resulting structure will be referred to as a \textbf{quantum vertex algebra}.
-                
-                \todo[inline]{Quantum vertex algebras}
-                
-            \end{enumerate}
+        which is just a continuous $\bbC[\![\hbar]\!]$-linear map for now. If the state-field correspondence \eqref{equation: state_field_correspondence} satisfies \:
+        \begin{itemize}
+            \item the \textbf{vacuum condition}, which reads:
+            \item as well as \textbf{weak associativity}, which reads:
+        \end{itemize}
+        then we will say that $\scrV$ is a \textbf{non-local vertex algebra}. If the weak associativity condition in the previous definition is strengthened to \textbf{braided associativity}\footnote{This is also called \say{S-locality}, but using this terminology will cause clashes later on.}, then we will obtain the notion of \textbf{braided vertex algebras}\footnote{Also called \say{weak quantum vertex algebras.}}. The condition reads:
+
+        \begin{definition}[Quantum vertex algebras (qVAs)] \label{def: quantum_vertex_algebras}
+            
         \end{definition}
 
     \subsection{Modules over quantum vertex algebras}
