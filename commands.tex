@@ -58,6 +58,12 @@
     \IfValueT{#2}{^{#2}}
   }%
 }
+\NewDocumentCommand{\ordprod}{e{_^}}{%
+  \mathbin{\mathop{\overrightarrow{\prod}}\displaylimits
+    \IfValueT{#1}{_{#1}}
+    \IfValueT{#2}{^{#2}}
+  }%
+} %ordered product
 \newcommand{\simpleroots}{\mathsf{\Delta}}
 \newcommand{\rootsystem}{\mathsf{\Phi}}
 \newcommand{\rootlattice}{\mathsf{Q}}
@@ -108,7 +114,7 @@
 \newcommand{\ch}{\operatorname{ch}} %characters of representations
 \newcommand{\dist}{\operatorname{dist}} %distance
 \newcommand{\level}{\boldsymbol{c}} %level
-\newcommand{\critlevel}{\boldsymbol{h}^{\vee}} %dual coxeter number
+\newcommand{\dualcoxeter}{\boldsymbol{h}^{\vee}} %dual coxeter number
 
 \newcommand{\Ad}{\mathrm{Ad}}
 \newcommand{\GL}{\mathrm{GL}}
@@ -453,6 +459,8 @@
 \newcommand{\calS}{\mathcal{S}}
 \newcommand{\calR}{\mathcal{R}}
 \newcommand{\calr}{\mathcal{r}}
+\newcommand{\calK}{\mathcal{K}}
+\newcommand{\calk}{\mathcal{k}}
 \newcommand{\scrX}{\mathscr{X}}
 \newcommand{\scrY}{\mathscr{Y}}
 \newcommand{\scrZ}{\mathscr{Z}}
@@ -510,7 +518,6 @@
 \newcommand{\scrH}{\mathscr{H}}
 \newcommand{\calH}{\mathcal{H}}
 \newcommand{\scrK}{\mathscr{K}}
-\newcommand{\calK}{\mathcal{K}}
 \newcommand{\scrV}{\mathscr{V}}
 \newcommand{\scrW}{\mathscr{W}}
 \newcommand{\bbS}{\mathbb{S}}
@@ -565,11 +572,11 @@
 %special lie modules
 \newcommand{\standard}{\boldsymbol{M}}
 \newcommand{\simple}{\boldsymbol{L}}
-\newcommand{\vacuum}{ \boldsymbol{ \mathcal{Vac} } }
+\newcommand{\vacuum}{ \mathcal{Vac} }
 \newcommand{\weyl}{\mathcal{W}}
-\newcommand{\boson}{ \boldsymbol{ \mathcal{Bos} } }
-\newcommand{\fermion}{ \boldsymbol{ \mathcal{Fer} } }
-\newcommand{\KR}{ \boldsymbol{ \mathcal{KR} } }
+\newcommand{\boson}{ \mathcal{Bos} }
+\newcommand{\fermion}{ \mathcal{Fer} }
+\newcommand{\KR}{ \mathcal{KR} }
 
 \newcommand{\frakC}{\mathfrak{C}}
 \newcommand{\frakD}{\mathfrak{D}}
@@ -708,7 +715,6 @@
 \newcommand{\semisimple}{\mathrm{ss}}
 \newcommand{\integrable}{\mathrm{int}}
 \newcommand{\s}{\mathfrak{s}}
-\newcommand{\elliptic}{\mathrm{ell}}
 \newcommand{\stab}{\mathrm{stab}}
 \newcommand{\disj}{\mathrm{disj}}
 \newcommand{\positive}{\mathrm{pos}} 
@@ -721,6 +727,9 @@
 \newcommand{\fact}{\mathrm{fact}}
 \newcommand{\tw}{\mathrm{tw}} %twisted
 \newcommand{\ext}{\mathrm{ext}} %extended
+\newcommand{\elliptic}{\mathrm{ell}}
+\newcommand{\trigonometric}{\mathrm{trig}}
+\newcommand{\rational}{\mathrm{rat}}
 
 %prism custom command
 \usepackage{relsize}
@@ -767,3 +776,7 @@
 
 \newcommand{\KM}{\mathrm{KM}} %kac-moody presentation/drinfeld-jimbo presentation
 \newcommand{\current}{\mathrm{Dr}} %drinfeld current presentation
+
+\newcommand{\freeboson}{\boldsymbol{\phi}}
+\newcommand{\freefermion}{\boldsymbol{\psi}}
+\newcommand{\DF}{\operatorname{DF}} %ding-frenkel isomorphism

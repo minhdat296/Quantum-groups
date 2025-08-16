@@ -1,7 +1,131 @@
-\section{Trigonometric and rational R-matrices}
-    \subsection{Trigonometric R-matrices}
+\section{Universal R-matrices}
+    In this section, we recall some of the salient features of solutions to the QYBE \eqref{equation: additive_spectral_QYBE} that are either of trigonometric or rational type, as well as the quantum algebras associated to those equations. Out point is to highlight some of the important differences between the two types of solutions and what these differences imply about the corresponding quantum algebras.
 
     \subsection{Rational R-matrices}
+        Let us begin by quickly recalling some general features of the RTT formalism for the Yangian, mostly so that we can set up and justify some key notations. We remark that this is only applicable to the classical types, due to a lack of faithful vector representations in the exceptional types.
+            
+        Begin with the \textbf{formal loop algebra}:
+            $$\g_N(\!(t^{-1})\!) := \g_N \tensor \bbC(\!(t^{-1})\!)$$
+        which shall always be equipped with the canonical $\Z$-grading given by $\deg xt^m := m$ for all $x \in \g_N$ and all $m \in \Z$. This Lie algebra can be endowed with the non-degenerate, invariant, and symmetric bilinear form given for all $x, y \in \g_N$ and $m, n \in \Z$ by:
+            $$(xt^m, yt^n) := (x, y)_{\g_N} \delta_{m + n, -1}$$
+        wherein $(-, -)_{\g_N}$ is a non-degenerate, invariant, and symmetric bilinear form on $\g_N$ (\textit{a priori}, a $\bbC^{\x}$-multiple of the Killing form). Using this bilinear form, one can then construct the following $\Z$-graded Manin triple:
+            $$\left( \g_N(\!(t^{-1})\!), \g_N[t], \g_N[\![t^{-1}]\!] \right)$$
+        This then defines a Lie cobracket $\delta: \g_N[t] \to \g_N[t_1] \tensor \g_N[t_2]$ given by:
+            $$\delta( X ) := [\Box(X), \calr(t_1 - t_2)]$$
+        for all $X \in \g_N[t]$ and for:
+            $$\calr(u) := \frac{\calr_{\g_N}}{u} + O(1)$$
+        (with $u$ a formal variable), which we call the Yangian \textbf{classical r-matrix}. Here, $\Box(X) := X \tensor 1 + 1 \tensor X$ is the \say{standard} classical coproduct, and $\calr_{\g_N} \in \g_N \tensor \g_N$ is the Casimir tensor\footnote{To be more precise, we have $\calr_{\g_N} \in \Sym^2(\g_N)^{\g_N}$. By viewing $(-, -)_{\g_N}$ as an element of $\Hom( \Sym^2(\g_N)^{\g_N}, \bbC )$, we can then regard $\calr_{\g_N}$ as the pre-image of $(-, -)_{\g_N}$ under the canonical map $\g_N \tensor \g_N \to \Hom(\g_N \tensor \g_N, \bbC)$. Since $(-, -)_{\g_N}$ is non-degenerate, symmetric, and invariant, the pre-image is unique and lies in the subspace $\Sym^2(\g_N)^{\g_N} \subset \g_N \tensor \g_N$.}.
+        
+        \textit{A priori}, the r-matrix $\calr$ is a solution to the \textbf{classical Yang-Baxter equation (CYBE)}:
+            \begin{equation} \label{equation: spectral_CYBE}
+                [\calr_{1, 2}(u), \calr_{1, 3}(u + v)] + [\calr_{1, 2}(u), \calr_{2, 3}(v)] + [\calr_{1, 3}(u + v), \calr_{2, 3}(v)] = 0
+            \end{equation}
+        Note also that:
+            \begin{equation} \label{equation: spectral_classical_unitarity}
+                \calr(u) = -\calr(-u)
+            \end{equation}
+        and because of this, we characterise the Yangian classical r-matrix as being \textbf{unitary}.
+        
+        A general result of Etingof-Kazhdan tells us that the graded Lie bialgebra $(\g_N[t], \delta)$ admits a \say{graded quantisation}:
+            $$\calY_{\hbar}(\g_N)$$
+        of the aforementioned Lie bialgebra structure on $\g_N[t]$; in particular, this means that there is isomorphism of $\Z$-graded \textit{Hopf algebras}:
+            $$\calU(\g_N[t]) \cong \calY_{\hbar}(\g_N)/\calY_{\hbar}(\g_N) \hbar$$
+        with the comultiplication on $\calU(\g_N[t])$ being given by $\Box(X)$ for all $X \in \g_N[t]$. This graded quantisation is we call the \textbf{formal Yangian}, and by specialising $\hbar$ to any $\hbar_0 \in \bbC \setminus \{0\}$, one obtains the \textbf{Yangian}:
+            $$\calY(\calR)$$
+        It turns out that, up to isomorphisms, the Yangian does not depend on the choice of $\hbar_0$ (hence why we do not specify this choice in the notation), and this is because the Yangian $\calY(\calR)$ carries a natural $\Z$-filtration such that $\calY_{\hbar}(\g_N) \cong \bigoplus_{n \geq 1} \calY(\calR) \hbar^n$ and $\g_Nr \calY(\calR) \cong \calU(\g_N[t]) \cong \calY_{\hbar}(\g_N)/\hbar$ (cf. \cite{drinfeld_original_yangian_paper}); as such, we refer to the Yangian as a \say{filtered quantisation} of $\calU(\g_N[t])$.
+    
+        Let:
+            $$\calY_{\hbar}(\g_N)'$$
+        be the $\bbC[\![\hbar]\!]$-submodule of $\Hom_{\bbC[\![\hbar]\!]}( \calY_{\hbar}(\g_N), \bbC[\![\hbar]\!] )$ spanned by so-called \say{tempered} $\bbC[\![\hbar]\!]$-linear functionals, which are elements $f := \sum_{m \geq 0} f_m$ such that $\lim_{m \to +\infty} \deg f_m = +\infty$.
+            
+        Such an element satisfies the \textbf{quantum Yang-Baxter equation (QYBE)}:
+            \begin{equation} \label{equation: additive_spectral_QYBE}
+                \calR(u - v)_{1, 2} \calR(u)_{1, 3} \calR(v)_{2, 3} = \calR(v)_{2, 3} \calR(u)_{1, 3} \calR(u - v)_{1, 2}
+            \end{equation}
+        wherein the subscript pairs indicate the pair of tensor copies that $\calR(u)$ is acting on.
+    
+        Finally, by letting 
+            \begin{equation} \label{equation: spectral_RTT_relation}
+                \calR(u - v) T_1(u) T_2(v) = T_2(v) T_1(u) \calR(u - v)
+            \end{equation}
+        obtaining the so-called \textbf{monodromy matrix}.
+            $$T(u) \in \Mat_N( \calY(\calR) )[\![u^{-1}]\!]$$
+    
+        Following \cite[Definition 2.1]{guay_regelskis_twisted_yangians_for_symmetric_pairs_of_types_BCD}, we work with the following definition of extended untwisted Yangians associated to a rational solution $\calR(u)$ to the QYBE on $\bbV_N^{\tensor 3}$.
+        \begin{definition}[Extended untwisted Yangians] \label{def: extended_untwisted_yangians}
+            The \textbf{extended untwisted Yangian} associated to the classical Lie algebra $\g_N$ and a rational solution $\calR(u)$ to the QYBE \eqref{equation: additive_spectral_QYBE} is the associative algebra:
+                $$\calX(\calR)$$
+            generated by the coefficients of the matrix entries of the elements:
+                $$T(u) \in \Mat_N( \calX(\calR)[\![u^{-1}]\!] )$$
+            subjected to the RTT relation \eqref{equation: spectral_RTT_relation}.
+        \end{definition}
+    
+        Let $P \in \bbV_N^{\tensor 2}$ be the operator permuting the two tensor factors\footnote{Note that this is an involutive symmetry.}. We will be fixing once and for all the following solution:
+            $$\calR(u)_{\bbV_N} = 1 + \frac{P}{u} + \frac{Q}{u - \kappa}$$
+        for the QYBE on $\bbV_N^{\tensor 3}$, wherein $\kappa := \sgn(\g_N) + \frac{N}{2}$, with $Q = 0$ for type $\sfA$, and:
+            \begin{equation} \label{equation: ABCD_signature}
+                \sgn(\g_N) =
+                \begin{cases}
+                    \text{$-1$ if $\g_N$ is of either type $\sfB$ or $\sfD$}
+                    \\
+                    \text{$1$ if $\g_N$ is of type $\sfC$}
+                \end{cases}
+            \end{equation}
+    
+        \begin{lemma}[Automorphisms of extended untwisted Yangians] \label{lemma: automorphisms_of_extended_untwisted_yangians}
+            \begin{enumerate}
+                \item Let $f(u) \in \bbC[\![u^{-1}]\!]^{\x}$ be an invertible formal power series in $u^{-1}$; recall that, because $\bbC[\![u^{-1}]\!]$ is a local commutative ring with (unique) maximal ideal $u^{-1}\bbC[\![u^{-1}]\!]$, $f(u)$ must be of the form $1 + \sum_{r \geq 0} f^{(r)} u^{-r - 1}$. Then, the map:
+                    $$\mu_f: \calX(\calR)[\![u^{-1}]\!] \to \Mat_N(\calX(\calR)[\![u^{-1}]\!])$$
+                given by:
+                    $$\mu_f( T(u) ) := f(u) T(u)$$
+                defines an algebra automorphism of $\calX(\calR)$.
+                \item Let $a \in \bbC$. Then, the map:
+                    $$\tau_a: \Mat_N(\calX(\calR)[\![u^{-1}]\!]) \to \Mat_N(\calX(\calR)[\![u^{-1}]\!])$$
+                given by:
+                    $$\tau_a( T(u) ) := T(u - a)$$
+                defines an algebra automorphism of $\calX(\calR)$.
+            \end{enumerate}
+        \end{lemma}
+            \begin{proof}
+                See \cite[Section 2]{guay_regelskis_twisted_yangians_for_symmetric_pairs_of_types_BCD}.
+            \end{proof}
+    
+        \begin{lemma}[Quantum contractions] \label{lemma: quantum_contractions}
+            The monodromy matrix:
+                $$T(u) \in \Mat_N( \calX(\calR) )[\![u^{-1}]\!]$$
+            satisfies the \textbf{quantum contraction} formula:
+                \begin{equation} \label{equation: quantum_contraction}
+                    T(u + \kappa)^t T(u) = T(u) T(u + \kappa)^t = z(u)
+                \end{equation}
+            wherein $z(u) \in \calX(\calR)[\![u^{-1}]\!]^{\x}$ is some invertible scalar series.
+        \end{lemma}
+            \begin{proof}
+                See \cite[Section 2]{guay_regelskis_twisted_yangians_for_symmetric_pairs_of_types_BCD}, Equation 2.11 in particular.
+            \end{proof}
+            
+        This leads us to the following definition.
+        \begin{definition}[Untwisted Yangians] \label{def: untwisted_yangians}
+            The \textbf{untwisted Yangian} is given by:
+                $$\calY(\calR) := \calX(\calR)/\<z(u) - 1\>$$
+        \end{definition}
+        \begin{remark}[Unitarity]
+            Through equation \eqref{equation: quantum_contraction}, we see that $\calY(\calR)$ is equivalently the quotient of $\calX(\calR)$ by the two-sided ideal generated by the relation $T(u + \kappa)^t T(u) - 1$ (or equivalently $T(u) T(u + \kappa)^t - 1$). Often, we will refer to these relations collectively as the \textbf{unitarity relation} or the \textbf{unitary condition}.
+        \end{remark}
+        \begin{lemma}[Centres of extended untwisted Yangians] \label{lemma: centres_of_extended_untwisted_yangians}
+            \begin{enumerate}
+                \item The coefficients of the quantum contraction $z(u)$ from equation \eqref{equation: quantum_contraction} generated the centre $\calZ(\calR) := \rmZ( \calX(\calR) )$.
+                \item Moreover, the coefficients of $z(u)$ are algebraically independent from one another, and thus:
+                    $$\calX(\calR) \cong \calY(\calR) \tensor \calZ(\calR)$$
+            \end{enumerate}
+        \end{lemma}
+            \begin{proof}
+                \begin{enumerate}
+                    \item 
+                    \item 
+                \end{enumerate}
+            \end{proof}
+
+    \subsection{Trigonometric R-matrices}
 
     \subsection{Quantum loop algebras associated to trigonometric and rational R-matrices} \label{subsection: trigonometric_and_rational_loop_QUEs}
         Following \cite{guay_regelskis_wendlandt_R_matrix_presentation_of_loop_QUEs}, we begin with quantum (twisted) loop algebras given by RLL-type generators and relations. The defining relations in the following R-matrix presentation of (extended) quantum loop algebras are natural from the point of view of the FRT formalism, and let us also mention - for later reference - that it is useful to think of the (extended) quantum loop algebras defined below as trigonometric analogues of (extended) double Yangians, a kind of quantum double for the usual Yangian; see example \ref{example: trigonometric_and_rational_loop_QUEs} below. This is why the monodromy matrices are \say{doubled}, and later on, we will see that there is a natural trigonometric analogue of the Yangian (the so-called \say{$q$-Yangian}) that is realisable as the subalgebra of a quantum loop algebra generated by the non-negative Fourier modes of the aforementioned monodromy matrices.
@@ -15,24 +139,9 @@
         \begin{definition}[Abstract extended quantum loop algebras] \label{def: extended_loop_QUEs_R_matrix_presentation}
             The \textbf{(formal) extended quantum loop algebra} associated $\calR$ at a \textbf{level} $\level \in \bbC$ is the associative algebra over $\bbC[\![\hbar]\!]$ that we denote by:
                 $$\DX_{\hbar}(\calR)_{\level}$$
-            It is generated by the coefficients of the matrix entries of the elements:
-                \begin{equation} \label{equation: RLL_creation_annihilation_operators}
-                    \begin{cases}
-                        L^+(u) := \sum_{r \geq 0} L^+[r] u^{r + 1} \in \Mat_N( \DX_{\hbar}(\calR)[\![u]\!] )
-                        \\
-                        L^-(u) := \sum_{r \geq 0} L^-[r] u^{-r - 1} \in \Mat_N( \DX_{\hbar}(\calR)[\![u^{-1}]\!] )
-                    \end{cases}
-                \end{equation}
-            along with distinguished central elements:
-                \begin{equation} \label{equation: extended_loop_QUE_level}
-                    \level_{\calR}^{\pm} =
-                    \begin{cases}
-                        \text{$e^{\pm \hbar \level}$ if $\calR$ is trigonometric}
-                        \\
-                        \text{$\pm \level$ if $\calR$ is rational}
-                    \end{cases}
-                \end{equation}
-            and these generators subjected to the following relations:
+            It is generated by the set:
+                $$\left\{ L^{\pm}_{i, j}[r], c_{\calR}^{\pm} \right\}_{ 1 \leq i, j \leq N, r \geq 0 }$$
+            whose elements are subjected to the following relations:
                 $$[ \level_{\calR}, L^{\pm}_{i, j}[r] ] = 0 \quad, \quad 1 \leq i, j \leq N, r \geq 0$$
                 \begin{equation}
                     \begin{cases}
@@ -47,6 +156,10 @@
                 \end{equation}
                 \begin{equation} \label{equation: extended_loop_QUEs_mixed_relation}
                     \calR(u + \level, v) L_1^+(u) L_2^-(v) = L_2^-(u) L_1^+(v) \calR(u - \level, v)
+                \end{equation}
+            In the last two relations, the generators $L^{\pm}_{i, j}[r]$ have been packaged into $N \x N$ matrices of formal power series:
+                \begin{equation} \label{equation: RLL_creation_annihilation_operators}
+                    L^+(u) := \sum_{r \geq 0} L^+[r] u^{r + 1} \in \Mat_N( \DX_{\hbar}(\calR)[\![u]\!] ) \quad, \quad L^-(u) := \sum_{r \geq 0} L^-[r] u^{-r - 1} \in \Mat_N( \DX_{\hbar}(\calR)[\![u^{-1}]\!] )
                 \end{equation}
         \end{definition}
         \begin{remark}
@@ -72,7 +185,16 @@
             \end{proof}
 
         \begin{lemma}[Hopf structures on extended quantum loop algebras] \label{lemma: hopf_structure_on_extended_loop_QUEs}
-            
+            On the extended quantum loop algebra $\DX_{\hbar}(\calR)$, there is the following Hopf structure:
+                \begin{equation} \label{equation: extended_loop_QUEs_coproducts}
+                    \Delta( L^{\pm}(u) ) = L^{\pm}(u)_{1, 2} \tensor L^{\pm}(u)_{1, 3} \quad, \quad \Delta( c_{\calR}^{\pm} ) = c_{\calR}^{\pm} \tensor c_{\calR}^{\pm}
+                \end{equation}
+                \begin{equation} \label{equation: extended_Loop_QUEs_counits}
+                    \e( L^{\pm}(u) ) = 1 \quad, \quad \e( c_{\calR}^{\pm} ) = 1
+                \end{equation}
+                \begin{equation} \label{equation: extended_Loop_QUEs_antipodes}
+                    \sigma( L^{\pm}(u) ) = L^{\pm}(u)^{-1} \quad, \quad \sigma( c_{\calR}^{\pm} )
+                \end{equation}
         \end{lemma}
             \begin{proof}
                 
@@ -107,27 +229,12 @@
             \begin{proof}
                 
             \end{proof}
-        \begin{corollary}[Kac-Moody coproduct fomrulae for Drinfeld generators] \label{coro: coproduct_formulae_for_drinfeld_generators}
+        \begin{corollary}[Kac-Moody coproduct formulae for Drinfeld generators] \label{coro: coproduct_formulae_for_drinfeld_generators}
             
         \end{corollary}
             \begin{proof}
                 
             \end{proof}
         \begin{remark}
-            The formulae from corollary \ref{coro: coproduct_formulae_for_drinfeld_generators} should not be confused with those of the Drinfeld coproduct, which gives rise to an alternate Hopf algebra structure on quantum loop algebras. This is conjecturally related to the standard Kac-Moody coproduct by a Drinfeld twisting process, but we will not touch upon this point. We make this comment instead to put emphasis on the fact that the coideal subalgebras arising from the K-matrices of Appel-Regelskis-Vlaar are with respect to the Kac-Moody coproduct. 
+            The formulae from corollary \ref{coro: coproduct_formulae_for_drinfeld_generators} should not be confused with those of the Drinfeld coproduct, which gives rise to an alternate Hopf algebra structure on quantum loop algebras. This is conjecturally related to the standard Kac-Moody coproduct by a Drinfeld twisting process, but we will not touch upon this point. We make this comment merely to put emphasis on the fact that the coideal subalgebras arising from the K-matrices of Appel-Regelskis-Vlaar are given with respect to the Kac-Moody coproduct. 
         \end{remark}
-
-        \todo[inline]{I'm not sure if the category O will end up being necessary to mention, but I'll keep this stuff here for the moment. If anything, I'll just need it in order to be able to write down explicit formulae for trigonometric K-matrices evaluated on objects of the category O.}
-        \begin{definition}[The category O for quantum loop algebras] \label{def: category_O_loop_QUEs}
-            
-        \end{definition}
-        \begin{lemma}[Tensor structures and semi-simplicity of the category O] \label{lemma: tensor_structure_and_semi_simplicity_of_category_O_loop_QUEs}
-            \begin{enumerate}
-                \item The weight module category $\calU_{\hbar}(\calR)\mod^{\rootlattice}$ is a tensor category with respect to $\tensor := \tensor_{\bbC}$.
-                \item The category $\calO( \calU_{\hbar}(\calR) )$ is meromorphically braided via the universal R-matrix $\calR(w, z)$.
-                \item The category $\calO^{\integrable}( \calU_{\hbar}(\calR) )$ a semi-simple meromorphically braided subcategory of $\calO( \calU_{\hbar}(\calR) )$.
-            \end{enumerate}
-        \end{lemma}
-            \begin{proof}
-                
-            \end{proof}

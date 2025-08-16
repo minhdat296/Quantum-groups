@@ -1,0 +1,16 @@
+In statistical mechanics, the R-matrix is a device that encodes nearby interactions of particles, in such a way that intrinsic properties can be kept tracked of. More specifically, if we would like to keep track of $k$ particles, each with $N$ internal degrees of freedom, also known as \say{(quantum) states} (e.g. magnetic charge, spin, etc.), then first of all, the space of states will be $(\bbC^N)^{\tensor k}$; such a system is usually referred to as a \say{spin chain}, and if the $k^{th}$ particle does not interact with the $1^{st}$ one, then the chain will be called \say{open}, while it will be referred to as being \say{closed} if there is interaction between the last and first particle. We are interested in spin chains in which particles only interact with their immediate neighbours, i.e. particle $i$ interacts only with particle $i - 1$ and $i + 1$, with $2 \leq i \leq N - 1$ in the open case and $i \in \Z/k\Z$ in the closed case. In particular, this means that for all intents and purposes, we need to only deal with three-particle systems, or mathematically speaking, $\bbC^N \tensor \bbC^N \tensor \bbC^N$ as the space of states. 
+
+Now, we assume that during interactions, particles keep their momentum while having their internal quantum states modified by said interactions. Since the $N$-tuple of internal quantum states of each particle is to be thought of as a vector in $\bbC^N$, the assumption above can be re-interpreted in more mathematical terms in the following manner. First of all, whatever is controlling these pairwise particle interactions, as it conserves momentum, is a linear operator on $\bbC^N \tensor \bbC^N$ (the operator acts not on $\bbC^N$, for this represents a single particle); we wish to also take into account the fact that the specificities of interactions may vary as the particles are placed at different points of an ambient space, e.g. some algebraic variety:
+    $$\Sigma$$
+so we shall be concerned with an element:
+    $$\calR_{\hbar} \in \End( \bbC^N \tensor \bbC^N ) \tensor \bbC(\Sigma)[\![\hbar]\!]$$
+wherein $\bbC(\Sigma)$ is the algebra of globally rational functions on $\Sigma$. We are interested only in the case when $\Sigma$ is a smooth algebraic curve, usually thought of as an embedded plane curve inside either $\A^2$ or $\P^2$; near $(0, 0)$, we can fix a local coordinate $u \in \Sigma$ and obtain a (non-canonical) embedding $\bbC(\Sigma) \subset \bbC(\!(u)\!)$; thus, we are interested in elements:
+    $$\calR_{\hbar}(u) \in \End( \bbC^N \tensor \bbC^N ) \tensor \bbC(\!(u)\!)[\![\hbar]\!]$$
+\begin{remark}
+    When $\Sigma$ is a projective curve, such as $\P^1$, the coordinate $u$ can be written homogeneously as $u = \frac{z}{w}$. 
+\end{remark}
+\begin{convention}
+    When it is not necessary to specify, we will omit the $\hbar$ subscript and only write $\calR$.
+\end{convention}
+
+\todo[inline]{Not done}
