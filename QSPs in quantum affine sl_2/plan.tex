@@ -1,0 +1,171 @@
+\input{article preambles}
+
+\setcounter{section}{0}
+
+\input{commands}
+\renewcommand{\1}{\boldsymbol{\delta}}
+
+\begin{document}
+
+    \title{
+        Quantum symmetric pairs in $\calU_q(\Loop\sl_2)$ and $\DY(\sl_2)$
+        \\
+        ---
+        \\
+        Plan
+    }
+    
+    \author{Dat Minh Ha}
+    \maketitle
+
+    \begin{abstract}
+        This is a proof of concept for an intended solution to the original question of defining and studying twisted $q$-Yangians associated to (pseudo-)symmetric pairs of types $\sfB, \sfC, \sfD$. I also realised that many details are still missing in the type $\sfA$ case as well, so I thought that it was worth spending some time with this case, even if it is to serve just as a prototype for our eventual goal.
+        
+        This document is meant only as an outline of the approach that I intend to pursue, so there is some trade-off between technical precision and conciseness. 
+    \end{abstract}
+    
+    {
+    \hypersetup{} 
+    %\dominitoc
+    \tableofcontents %sort sections alphabetically
+    }
+
+    \section{The plan}
+        \subsection{Terminologies and notations}
+            \begin{convention}[Quantum algebras]
+                First of all, to fix terminologies, let me refer to both quantum symmetric pairs and quantum pseudo-symmetric pairs (in the sense of \cite{regelskis_vlaar_kac_moody_pseudo_symmetric_pairs}) as \say{quantum symmetric pairs} and abbreviate the term by QSP. When there is a need to specify the presentation of the QSPs at play, the QSPs that arise from reflection equations (and hence ultimately from K-matrices; e.g. as in \cite{molev_ragoucy_sorba_twisted_q_yangians_type_A} or \cite{guay_regelskis_twisted_yangians_for_symmetric_pairs_of_types_BCD}) shall be referred to as \say{reflection algebras}, while those given by Kac-Moody-style generators satisfying Chevalley-Serre-type relations (such as the QSPs in \cite{regelskis_vlaar_reflection_matrices_coideal_subalgebras}) shall be referred to as \say{$\i$quantum groups}; I need this distinction also because the latter type does not seem to have an agreed-upon name in the literature, though the term \say{$\i$quantum group} seems to be the next best thing. Otherwise, I will keep to the standard terminologies, e.g. \say{twisted $q$-Yangians}, \say{twisted Yangians}, etc.
+            
+                Quantum algebras that arise as quantum doubles or (reasonably minimal) quotients thereof, such as quantum Kac-Moody algebras, quantum affine algebras, quantum loop algebras, (extended) double Yangians, will sometimes be referred to collectively as \say{affine quantum algebras} or something of the sort; this is because there are constructions that will work identically between the trigonometric and rational cases and will only depend qualitatively on the R-matrix; I hope context will make things clear down below.
+            \end{convention}
+
+            \begin{convention}[Spectral parameters]
+                Trigonometric R-matrices and K-matrices will usually depend multiplicatively on spectral parameters $z, w$, while rational R-matrices will depend additively on spectral parameters $u := \log(z), v := \log(w)$.
+            \end{convention}
+
+            \begin{convention}[Formal power series]
+                In keeping with modern conventions (particularly within the vertex algebra literature), given any formal distribution:
+                    $$a(z) := \sum_{m \in \Z} a_m z^{-m - 1}$$
+                let us write:
+                    $$a(z)^- := \sum_{m \in \geq 0} a_m z^{-m - 1} \quad, \quad a(z)^+ := \sum_{m < 0} a_m z^{-m - 1}$$
+                for the negative and positive halves, respectively, with the point being that we would then have:
+                    $$(\del_z a(z))^{\pm} = \del_z( a(z)^{\pm} ) \quad, \quad \del_z := \frac{d}{dz}$$
+                These notations will usually be used for generating series. Also, for the formal Dirac distribution around $z = w$ (cf. e.g. \cite[Subsection 1.1.3]{frenkel_ben_zvi_vertex_algebras_and_algebraic_curves}), we write:
+                    $$\1(z - w) := \sum_{n \in \Z} z^n w^{-n - 1}$$
+                and it is useful to recall that:
+                    $$(z - w)^{n + 1} \del_w^n \1(z - w) = 0$$
+            \end{convention}
+
+        \subsection{Setup}
+            For us, $\hbar$ shall be a formal variable for the moment. We write $q := e^{\hbar}$, and when $\hbar$ is specialised to numerical values, we assume that $\hbar \in \bbC \setminus 2\pi i \Q$ so that $q$ is not a root of unity.
+        
+            Suppose that $\calR_{\trigonometric}(zw^{-1})$ is a trigonometric solution to the quantum Yang-Baxter equation (QYBE) with rational limit $\calR_{\rational}(u - v)$ with classical limits $\calr_{\trigonometric}(zw^{-1})$ and $\calr_{\rational}(u - v)$ respectively; denote the corresponding quasi-triangular (topological) Hopf algebras as in \cite{etingof_kazhdan_quantisation_1} (see also \cite{etingof_kazhdan_quantisation_1} and \cite{etingof_kazhdan_quantisation_6}) by:
+                $$\calU_{\hbar}(\calR)$$
+            and their classical limits by:
+                $$\g := \g(\calr)$$
+            \textit{A priori}, $\g(\calr_{\trigonometric})$ is a Kac-Moody algebra (with derivation), but let us assume further that it is of a untwisted affine type $\sfX$ in the classification of \cite[Chapter 4]{kac_infinite_dimensional_lie_algebras}. Consequently, there exists a finite-dimensional simple Lie algebra $\bar{\g}$ such that:
+                $$\g \cong ( \Loop \bar{\g} \oplus \bbC c ) \rtimes \bbC \del$$
+            wherein $\Loop \bar{\g} := \g[t^{\pm 1}]$ and $\del$ acts by $\id \tensor t\frac{d}{dt}$. In particular, this means that the loop algebra $\Loop \bar{\g}$ is a Lie sub-bialgebra of $\g(\calr_{\trigonometric})$, and hence the quantum Kac-Moody algebra $\calU_{\hbar}^{\calR}(\g) := \calU_{\hbar}(\calR_{\trigonometric})$ admits the quantum loop algebra $\calU_{\hbar}^{\calR}(\Loop \bar{\g})$ (both in the R-matrix presentation) as a Hopf subalgebra. Recall also, that there are two other presentations for the quantum Kac-Moody and quantum loop algebras, namely by Drinfeld currents and Kac-Moody generators; let us denote these algebras by $\calU_{\hbar}^{\current}(\g), \calU_{\hbar}^{\current}(\Loop \bar{\g})$ and $\calU_{\hbar}^{\KM}(\g), \calU_{\hbar}^{\KM}(\Loop \bar{\g})$ respectively. By theorems of Ding-Frenkel and Beck (later on clarified by Frenkel and Mukhin), we know that there are algebra isomorphisms:
+                $$\calU_{\hbar}^{\calR}(\g) \xrightarrow[]{\cong} \calU_{\hbar}^{\current}(\g) \xrightarrow[]{\cong} \calU_{\hbar}^{\KM}(\g)$$
+            which then get restricted down to isomorphisms:
+                $$\calU_{\hbar}^{\calR}(\Loop \bar{\g}) \xrightarrow[]{\cong} \calU_{\hbar}^{\current}(\Loop \bar{\g}) \xrightarrow[]{\cong} \calU_{\hbar}^{\KM}(\Loop \bar{\g})$$
+                
+            Next, suppose that $\calK_{\trigonometric}(z)$ and $\calK_{\rational}(u)$ respectively are solutions to the boundary quantum Yang-Baxter equation (bQYBE) given using the R-matrices fixed previously, and then denote the reflection algebras arising from these K-matrices by:
+                $$\calB_{\hbar}(\calK)$$
+            Suppose that $\vartheta$ is the (pseudo-)involutive automorphism on $\g(\calr)$ such that the classical limit of the reflection algebra above is the fixed point subalgebra:
+                $$(\Loop \bar{\g})^{\vartheta}$$
+            Moreover, $\calB_{\hbar}(\calK)$ is \textit{a priori} a right-coideal subalgebra of the quantum loop algebra $\calU_{\hbar}^{\calR}(\Loop \bar{\g})$, hence also a right-coideal subalgebra of $\calU_{\hbar}^{\KM}(\Loop \bar{\g})$ in particular.
+
+            It is also worth noting that $\calU^{\calR}(\Loop \bar{\g})$ comes equipped with representations $\pi_z^{\pm}: \calU^{\calR}(\Loop \bar{\g}) \to \End(\bbC^N)[\![z^{\pm 1}]\!]$
+
+            At the same time, the automorphism $\vartheta$ induces an automorphism on the Dynkin diagram of type $\sfX$, and hence . Thus, there exists an induced automorphism on the set of Kac-Moody-style generators of $\calU_{\hbar}^{\KM}(\Loop \bar{\g})$, and therefore there exists an $\i$quantum group associated to the aforementioned automorphism $\vartheta$, which we denote by:
+                $$\calU_{\hbar}^{\KM}(\Loop \bar{\g}, \vartheta)$$
+            
+        \subsection{Goal}
+            Ideally, we would like to be able to show that the algebras:
+                $$\calB_{\hbar}(\calK) \quad \text{and} \quad \calU_{\hbar}^{\KM}(\Loop \bar{\g}, \vartheta)$$
+            are isomorphic for \textit{all} affine types $\sfX$, even the twisted types (in which case the loop algebra $\Loop \bar{\g}$ will have to be replaced by an twisted version, but we will worry about this later). However, we will focus on the case when:
+                $$\bar{\g} = \sl_2$$
+            for now, as a proof of concept. In particular, we will be focusing on the cases when the K-matrix is of type $\sfA.1, \sfA.2, \sfA.3$ and thus are diagonal, and the K-matrix of the $q$-Onsager algebra (corresponding to when $\vartheta$ is the Chevalley involution), which is the simplest non-diagonal K-matrix. None of these K-matrices are dynamical, but this is not so much of a technical barrier as non-diagonality.
+
+    \section{Strategy}
+        From now on, we focus on the case of the untwisted affine Kac-Moody algebra $\g = \hat{\sl}_2$ with underlying finite-type Lie algebra $\bar{\g} = \sl_2$.
+
+        \subsection{Free boson realisations for affine quantum algebras}
+            It is well-known that the generators of $\calU_{\hbar}^{\current}(\hat{\sl}_2)$ - and hence $\calU_{\hbar}^{\current}(\Loop \sl_2)$ too - admits a realisation in terms of so-called free bosonic\footnote{As far as I understand it, non-super symmetry algebras are realised in terms of bosonic fields, while supersymmetry algebras are realised in terms of fermionic fields.} fields; see \cite{awata_odake_shiraishi_free_boson_realisation_of_quantum_affine_sl_N} and \cite[Section 7]{frenkel_reshetikhin_affine_QUEs_and_deformed_virasoro_and_finite_W_algebras}, and in essence, this means that we are constructing an embedding:
+                $$\freeboson_{\hbar, \level}: \calU_{\hbar}^{\current}(\hat{\sl}_2)_{\level} \to \calA_{\hbar}^{\current}(\hat{\sl}_2)_{\level}$$
+            of the quantum Kac-Moody algebra into a \say{deformed oscillator algebra} (in a presentation by Drinfeld-style currents), both at a \say{level} $\level \in \bbC$; more on this level parameter shortly. This deformed oscillator algebra $\calA_{\hbar}^{\current}(\hat{\sl}_2)_{\level}$ is the grading-completion of the the associative $\bbC[\![\hbar]\!]$-algebra generated by the elements:
+                $$\lambda[n], b[n], c[n] \quad, \quad n \in \Z \setminus \{0\}$$
+                $$e^{\pm \frac{\lambda_0}{2}}, e^{\pm \frac{(q - q^{-1}) b_0}{2}}, e^{\pm \frac{(q - q^{-1}) c_0}{2}}$$
+                $$\beta, \gamma$$
+                $$\del$$
+            which are subjected to the following relations, given for all $m, n \in \Z \setminus \{0\}$:
+                \begin{equation} \label{equation: q_deformed_affine_sl_2_oscillator_lambda_commutators}
+                    [ \lambda[m], \lambda[n] ] = \frac1n \frac{ [(\level + \dualcoxeter) n]_q [n]_q^2 }{ [2n]_q } \delta_{m + n, 0}
+                \end{equation}
+                
+                \begin{equation} \label{equation: q_deformed_affine_sl_2_oscillator_bc_commutators}
+                    [ b[m], b[n] ] = -\frac1n [n]_q^2 \delta_{m + n, 0} \quad, \quad [ c[m], c[n] ] = \frac1n [n]_q^2 \delta_{m + n, 0}
+                \end{equation}
+                
+                \begin{equation} \label{equation: q_deformed_affine_sl_2_oscillator_beta_gamma_commutators}
+                    [ b[0], \beta ] = -\frac{q - q^{-1}}{2\hbar} \quad, \quad [ c[0], \gamma ] = \frac{q - q^{-1}}{2\hbar}
+                \end{equation}
+            in which $\dualcoxeter = -2$ is the dual Coxter number. Usually, one packages the generators above into series:
+                $$\lambda(z) = \sum_{n \in \Z} \lambda[n] z^{-n - 1}$$
+                $$
+                    b(z) = \sum_{n \in \Z} b[n] z^{-n - 1} \quad, \quad c(z) = \sum_{n \in \Z} c[n] z^{-n - 1}
+                $$
+            using which we form the following series generating series for the algebra $\calA_{\hbar}^{\current}(\hat{\sl}_2)_{\level}$:
+                \begin{equation} \label{equation: q_deformed_affine_sl_2_oscillator_Lambda_generating_series}
+                    \Lambda^{\pm}(z) := e^{ \mp \frac{\lambda_0}{2} } e^{ \pm \lambda(z)^{\pm} }
+                \end{equation}
+                
+                \begin{equation} \label{equation: q_deformed_affine_sl_2_oscillator_BC_generating_series}
+                    B^{\pm}(z) := \pm (q - q^{-1}) \left( -\frac12 b[0] + b(z)^{\pm} \right)
+                    \quad, \quad
+                    C^{\pm}(z) := \pm (q - q^{-1}) \left( -\frac12 c[0] + c(z)^{\pm} \right)
+                \end{equation}
+                
+                \begin{equation} \label{equation: quatum_affine_sl_2_oscillator_Theta_Gamma_generating_series}
+                    \Beta(z) := \beta + \frac{(q - q^{-1}) b_0}{2\hbar} \log(z) + \sum_{n \in \Z \setminus \{0\}} \frac{b[n]}{[n]_q} z^{-n - 1}
+                    \quad, \quad
+                    \Gamma(z) := \gamma + \frac{(q - q^{-1}) c_0}{2\hbar} \log(z) + \sum_{n \in \Z \setminus \{0\}} \frac{c[n]}{[n]_q} z^{-n - 1}
+                \end{equation}
+            \begin{remark}[Regarding notations from \cite{frenkel_reshetikhin_affine_QUEs_and_deformed_virasoro_and_finite_W_algebras} and \cite{awata_odake_shiraishi_free_boson_realisation_of_quantum_affine_sl_N}]
+                In \cite{frenkel_reshetikhin_affine_QUEs_and_deformed_virasoro_and_finite_W_algebras}, the elements $\beta, \gamma$ are denoted by $p_b, p_c$ respectively, and the series $B^{\pm}(z), C^{\pm}(z), \Beta(z)$, and $\Gamma(z)$ are denoted by $b^{\pm}(z), c^{\pm}(z), b(z)$, and $c(z)$ respectively. Also, in comparison with the generators $a[n]$ from \cite{awata_odake_shiraishi_free_boson_realisation_of_quantum_affine_sl_N}, the generators $\lambda[n]$ differ by $\lambda[n] = \frac{q - q^{-1}}{q^n + q^{-n}} a[n]$. This leads to $\Lambda^{\pm}(z) \Lambda^{\pm}(z q^{\pm 2}) = \exp\left( a^{\pm}( z q^{\pm 1} ) \right)$. 
+            \end{remark}
+            
+            In the classical limit $\hbar \to 0$, the deformed oscillator algebra $\calA_{\hbar}(\hat{\sl}_2)_{\level}$ becomes the \say{classical oscillator algebra} (at the same level $\level \in \bbC$), which is the associative $\bbC$-algebra generated by the coefficients of the series:
+                $$\chi(z) := \sum_{n \in \Z} \chi[n] z^{-n - 1}$$
+                $$a(z) := \sum_{n \in \Z} a[n] z^{-n - 1} \quad, \quad a^{\dagger}(z) := \sum_{n \in \Z} a^{\dagger}[n] z^{-n - 1}$$
+            which obeys the classical Heisenberg OPE (cf. \cite[Subsection 2.3.2]{frenkel_ben_zvi_vertex_algebras_and_algebraic_curves}):
+                \begin{equation} \label{equation: classical_heisenberg_OPE}
+                    [\chi(z), \chi(w)] \sim 2 \del_w \1(z - w)
+                \end{equation}
+            while the series $b(z)$ and $c(z)$ will become $a(z)$ and $z^{\dagger}(z)$ respectively, between which there are the following OPE relations:
+                \begin{equation} \label{equation: classical_weyl_OPE}
+                    [a(z), a(w)] = [a^{\dagger}(z), a^{\dagger}(w)] = 0, \quad, \quad [a(z), a^{\dagger}(w)] \sim \level \1(zw^{-1})
+                \end{equation}
+            Thus, $\lambda(z)^{\pm}$ should appear in the free boson realisations of the Cartan-like currents $K^{\pm}(z)$ of $\calU_{\hbar}(\hat{\sl}_2)_{\level}$, while $b(z)$ and $c(z)$ should appear in the free boson realisations of the \say{upper and lower triangular} currents $E(z), F(z)$. The idea behind the construction of the free boson realisation $\freeboson_{\hbar, \level}$ is thus, that $\calU_{\hbar}(\hat{\sl}_2)_{\level}$ can be embedded into $\calA_{\hbar}^{\current}(\hat{\sl}_2)_{\level}$ because the latter is generated by the same number of similarly behaving generating series, but those are subjected to fewer relations than the generating series of the former, and thus $\calA_{\hbar}^{\current}(\hat{\sl}_2)_{\level}$ is \say{sufficiently large}.
+
+            \begin{remark}
+                There are two Cartan-like currents $K^{\pm}(z)$ amongst the generating series for $\calU_{\hbar}(\hat{\sl}_2)_{\level}$, and hence two similarly behaving generating series $\lambda(z)^{\pm}$ for the deformed oscillator algebra $\calA_{\hbar}^{\current}(\hat{\sl}_2)_{\level}$, because $\calU_{\hbar}(\hat{\sl}_2)$ arises as a quantum double. In particular, in order to construct the underlying Lie bialgebra structure on the affine Kac-Moody algebra $\hat{\sl}_2$, it is necessary to \say{double-up} the Cartan subalgebra so that a non-degenerate invariant bilinear form could be constructed on the resulting enlargement of $\hat{\sl}_2$, and thus a Manin triple can be constructed. See \cite{etingof_kazhdan_quantisation_6} for more details. 
+            \end{remark}
+
+            \begin{remark}
+                The factor of $2$ appears in equation \eqref{equation: classical_heisenberg_OPE} because we can choose a symmetric, non-degenerate, and invariant bilinear form $(\cdot, \cdot)_{\sl_2}$ on $\sl_2$ so that $( \chi[m], \chi[n] )_{\sl_2} = 2 \delta_{m + n, 0}$ for all $m, n \in \Z$. In general, it is important to keep track of such a bilinear form on $\bar{\g}$, since it determines the Cartan matrix of $\bar{\g}$, and hence of its affinisastion $\g$ (see \cite[Chapter 7]{kac_infinite_dimensional_lie_algebras}).
+            \end{remark}
+
+            To be a bit more precise, and also to explain the need for keeping track of the level parameter $\level \in \bbC$, let us first introduce the \say{Fock space} of $\calA_{\hbar}^{\current}(\hat{\sl}_2)_{\level}$. This is an instance of the general vacuum module construction, and is the left-$\calA_{\hbar}^{\current}(\hat{\sl}_2)_{\level}$-module whose underlying $\bbC[\![\hbar]\!]$-module is isomorphic to that of the subalgebra of $\calA_{\hbar}^{\current}(\hat{\sl}_2)_{\level}$ spanned by monomials in the coefficients $\lambda[n], b[n], c[n]$ with $n $
+    
+        \subsection{Free boson realisations for QSPs}
+            It is not straightforward to apply this kind of thinking to $\calB_{\hbar}(\calK)$, however. The reason is that the Ding-Frenkel isomorphism $\calU_{\hbar}^{\calR}(\Loop \sl_2) \xrightarrow[]{\cong} \calU_{\hbar}^{\current}(\Loop \sl_2)$ relies on us knowing an explicit Gauss decomposition for the monodromy matrices $L^{\pm}(z) := \sum_{1 \leq i, j \leq N} \sum_{r \geq 0} L^{\pm}_{i, j}[r] z^{\pm r}$ generating $\calU_{\hbar}^{\calR}(\Loop \sl_2)$, while we do not know of such a formula for the monodromy matrix $B(z) := \sum_{1 \leq i, j \leq N} \sum_{r \geq 0} B_{i, j}[r] z^{-r}$ generating $\calB_{\hbar}(z)$. 
+
+        \subsection{Technical difficulties}
+
+    \section{Future works}
+    
+    \addcontentsline{toc}{section}{References}
+    \printbibliography
+
+\end{document}
