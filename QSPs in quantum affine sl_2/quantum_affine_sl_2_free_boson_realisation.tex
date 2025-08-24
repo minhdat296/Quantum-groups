@@ -25,7 +25,7 @@
 
         At the same time, there are two other realisations of supposedly the same Hopf algebra that quantises the standard Lie bialgebra structure on $\hat{\sl}_2$. They shall be referred to as the presentations by Kac-Moody\footnote{... due to its similarity the Chevalley-Serre-style presentation for $\hat{\sl}_2$ in terms of simple root vectors given by Kac and Moody; for historical reasons, this is also known as the Drinfeld-Jimbo presentation.} and Drinfeld's current generators, respectively. See \cite[Subsection 2.1]{ding_pakuliak_khoroshkin_factorisation_of_the_R_matrix_of_quantum_affine_sl_2} for more details on these two realisations. To be able to write down these two presentations, we will be needing the following $q$-number expressions:
             $$[n]_q := \frac{q^n - q^{-n}}{q - q^{-1}} \quad, \quad [n]_q! := \prod_{k = 1}^n [k]_q$$
-                $$\exp_q(z) := \sum_{n \geq 0} \frac{1}{[n]_q!} z^n$$
+            $$\exp_q(z) := \sum_{n \geq 0} \frac{1}{[n]_q!} z^n$$
         They are to be interpreted as elements of $\bbC[q^{\pm 1}]$.
         \begin{definition}[Quantum $\hat{\sl}_2$: Kac-Moody presentation] \label{def: quantum_affine_sl_2_kac_moody_presentation}
             The algebra:
@@ -45,7 +45,7 @@
 
         The two realisations of quantum $\hat{\sl}_2$ are known to be equivalent, in the sense that they give rise to two isomorphic algebras. This is a special case of a result of Ding and Frenkel, whose main insight into the matter was that the matrices $L^{\pm}(z)$ admit a Gaussian decomposition\footnote{Note that this is not a trivial fact, for the entries of these matrices come from the noncommutative algebra $\calU_{\hbar}^{\calR}(\hat{\sl}_2)$.} in which the entries of the lower-triangular/diagonal/upper-triangular factors can be used to recover the series $E(z), F(z), K_i^{\pm}(z)$ from definition \ref{def: quantum_affine_sl_2_drinfeld_current_presentation}.
         \begin{lemma}[The Ding-Frenkel Isomorphism: the quantum $\hat{\sl}_2$ case] \label{lemma: ding_frenkel_isomorphism_quantum_affine_sl_2}
-            At any level $\level \in \bbC$, the following Gaussian decomposition egammasts in the algebra $\calU_{\hbar}^{\calR}(\hat{\sl}_2)_{\level}$:
+            At any level $\level \in \bbC$, the following Gaussian decompositions exist in the algebra $\calU_{\hbar}^{\calR}(\hat{\sl}_2)_{\level}$:
                 \begin{equation} \label{equation: quantum_affine_sl_2_monodromy_matrices_gaussian_decompositions}
                     \begin{aligned}
                         L^{\pm}(z)
@@ -179,7 +179,7 @@
         \begin{lemma} \label{lemma: q_deformed_affine_sl_2_oscillator_generating_series_commutation_relations}
             The series in \eqref{equation: q_deformed_affine_sl_2_oscillator_Lambda_generating_series}, \eqref{equation: q_deformed_affine_sl_2_oscillator_BC_generating_series}, and \eqref{equation: quatum_affine_sl_2_oscillator_Theta_Gamma_generating_series} satisfy the following commutation relation:
                 \begin{equation} \label{equation: q_deformed_affine_sl_2_oscillator_Lambda_generating_series_commutators}
-                    \Lambda^+(z) \Lambda^-(w) = \frac{ g\left( \frac{w}{z} q^{-k - 2} \right) }{ g\left( \frac{w}{z} q^{k + 2} \right) } \Lambda^-(w) \Lambda^+(z)
+                    \Lambda^+(z) \Lambda^-(w) = \frac{ g\left( q^{-\level - 2} \frac{w}{z} \right) }{ g\left( q^{\level + 2} \frac{w}{z} \right) } \Lambda^-(w) \Lambda^+(z)
                 \end{equation}
             (wherein $g$ is the normalising factor for the R-matrix $\calR$), as well as the relations:
                 \begin{equation} \label{equation: q_deformed_affine_sl_2_oscillator_BC_generating_series_commutators}
@@ -207,7 +207,7 @@
             
         It was then stated in \cite[Proposition 4]{frenkel_reshetikhin_affine_QUEs_and_deformed_virasoro_and_finite_W_algebras} that the following version of the realisation of $\calU_{\hbar}^{\current}(\hat{\sl}_2)$ in terms of free bosonic fields. The formulae are as in \textit{loc. cit.}, but the authors made no mention of injectivity. 
         \begin{proposition}[Free boson realisation of $\calU_{\hbar}^{\current}(\hat{\sl}_2)$] \label{prop: free_boson_realisation_quantum_affine_sl_2_drinfeld_current_presentation}
-            There egammasts an \textit{injective} algebra homomorphism:
+            There exists an \textit{injective} algebra homomorphism:
                 \begin{equation} \label{equation: free_boson_realisation_quantum_affine_sl_2_drinfeld_current_presentation}
                     \freeboson^{\current}_{\hbar, \level}: \calU_{\hbar}^{\current}(\hat{\sl}_2)_{\level} \to \calA_{\hbar}^{\current}(\hat{\sl}_2)_{\level}
                 \end{equation}
