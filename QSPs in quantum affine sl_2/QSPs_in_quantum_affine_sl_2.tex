@@ -1,8 +1,16 @@
 \section{\texorpdfstring{Free boson realisation for QSPs in trigonometric and rational quantum affine $\sl_2$ algebras}{}}
-    \subsection{\texorpdfstring{Trigonometric and rational QSPs}{}}
-        \todo[inline]{As shorthands, let us refer to the QSP algebras given by means of reflection equations as \textbf{reflection algebras}, while the ones given by Kac-Moody-style generators as \textbf{$\i$quantum groups} (as opposed to something like "QSP in the Kac-Moody presentation ..."). The term QSP will be used to refer to either or both of these notions collectively.}
+    \subsection{Quantum symmetric pairs}
+        For a moment, let $\bar{\g}$ be a general finite-dimensional simple Lie algebra again.
     
-        We begin by recalling the notion of reflection equations and coideal subalgebras of quasi-triangular complete topological Hopf algebra defined by those equations, so that we can explain in details the problem that we are trying to solve. All Lie algebras, Lie bialgebras, bialgebras, Hopf algebras, etc., if equipped with a topology, are assumed to be complete unless stated otherwise. Also, for our purposes, it suffices to work with (unitary) solutions $\calR(z, w)$ to the QYBE (in $\bbV_N^{\tensor 3}$) that depend only on the ratio $\frac{z}{w}$, i.e. $\calR(z, w) = \calR\left(\frac{z}{w}\right)$ (as all of the examples that we have in mind satisfy this condition), though the construction below, in principle, can be carried out with solutions that depend more generally on the spectral parameters $z, w$.
+        We begin by recalling the notion of reflection equations and coideal subalgebras of quasi-triangular complete topological Hopf algebra defined by those equations, so that we can explain in details the problem that we are trying to solve. All Lie algebras, Lie bialgebras, bialgebras, Hopf algebras, etc., if equipped with a topology, are assumed to be complete unless stated otherwise. Again, all R-matrices are assumed to be unitary (cf. equation \eqref{equation: R_matrix_unitarity}), and likewise, we are interested only in unitary solutions $\calK(z)$ to bQYBEs, which is to say that:
+            \begin{equation} \label{equation: K_matrix_unitarity}
+                \calK_{\trigonometric}(z) \calK_{\trigonometric}(z^{-1}) = 1 \quad, \quad \calK_{\rational}(u) \calK_{\rational}(-u) = 1
+            \end{equation}
+        Additionally, we shall assume that trigonometric R-matrices depend only on the ratio $\frac{z}{w}$ of their spectral parameters (if there is any dependence at all), and likewise, that rational R-matrices depend only on the difference $u - v$ of their spectral parameters.
+
+        Fix a solution $\calR$ to the QYBE, trigonometric or rational, and let:
+            $$\calU_{\hbar}(\calR)$$
+        denote the associated quantum algebra. Let $\Delta, \e, \sigma$ denote the comultiplication, counit, and antipode maps.
         
         The \textbf{reflection equations} mentioned above are equations in:
             $$\End( \bbV_N \tensor \bbV_N ) \tensor \calU_{\hbar}(\calR)[\![z, w]\!] \quad \text{or} \quad \End( \bbV_N \tensor \bbV_N ) \tensor \calU_{\hbar}(\calR)[\![z^{-1}, w^{-1}]\!]$$
@@ -12,10 +20,10 @@
             \end{equation}
         respectively. These equations come in many flavours, with two amongst them being of particular interest to us, the so-called \textbf{untransposed and transposed reflection equations}, which read:
             \begin{equation} \label{equation: untransposed_reflection_equation_multiplicative}
-                \calR\left(\frac{z}{w}\right)_{2, 1} B(z)_1 \calR(zw)_{1, 2} B(w)_2 = B(w)_2 \calR(zw)_{2, 1} B(z)_1 \calR\left(\frac{z}{w}\right)_{1, 2}
+                \calR(zw^{-1})_{2, 1} B(z)_1 \calR(zw)_{1, 2} B(w)_2 = B(w)_2 \calR(zw)_{2, 1} B(z)_1 \calR(zw^{-1})_{1, 2}
             \end{equation}
             \begin{equation} \label{equation: transposed_reflection_equation_multiplicative}
-                \calR\left(\frac{z}{w}\right)_{1, 2} B(z)_1 \calR\left(\frac{1}{zw}\right)_{1, 2}^t B(w)_2 = B(w)_2 \calR\left(\frac{1}{zw}\right)_{1, 2}^t B(z)_1 \calR\left(\frac{z}{w}\right)_{1, 2}
+                \calR(zw^{-1})_{1, 2} B(z)_1 \calR( (zw)^{-1} )_{1, 2}^t B(w)_2 = B(w)_2 \calR( (zw)^{-1} )_{1, 2}^t B(z)_1 \calR(zw^{-1})_{1, 2}
             \end{equation}
         and take place in $\End( \bbV_N \tensor \bbV_N ) \tensor \calU_{\hbar}(\calR)[\![z, w]\!]$ and $\End( \bbV_N \tensor \bbV_N ) \tensor \calU_{\hbar}(\calR)[\![z^{-1}, w^{-1}]\!]$ respectively. Notice also, that equations \eqref{equation: untransposed_reflection_equation_multiplicative} and \eqref{equation: transposed_reflection_equation_multiplicative} are nothing but the images of bQYBEs of the same form under the induced map:
             $$
@@ -25,20 +33,19 @@
                     & \to \End( \bbV_N \tensor \bbV_N ) \tensor \calU_{\hbar}(\calR)[\![z^{\pm 1}, w^{\pm 1}]\!]
                 \end{aligned}
             $$
-        In particular, the image of solutions $\calK(z)$ to those bQYBEs get mapped to $B(z)$. In analogy with the series $L^{\pm}(z)$, we refer to solutions $B(z)$ as in \eqref{equation: type_A_multiplicative_boundary_monodromy_matrices} as \textbf{boundary monodromy matrices}.
-        \begin{remark}
-            As a side remark, we note that since universal K-matrices are required to satisfy unitarity, that is:
-                $$\calK(z) \calK(z^{-1}) = 1$$
-            one has also that:
-                \begin{equation} \label{equation: type_A_multiplicative_boundary_monodromy_matrices_unitarity}
-                    B(z) B(z^{-1}) = 1
-                \end{equation}
-            which is also referred to as \textbf{unitarity}.
-        \end{remark}
+        In particular, the image of solutions $\calK(z)$ to those bQYBEs get mapped to $B(z)$. In analogy with the series $L^{\pm}(z)$, we refer to solutions $B(z)$ as in \eqref{equation: type_A_multiplicative_boundary_monodromy_matrices} as \textbf{boundary monodromy matrices}. We note that since universal K-matrices are required to satisfy the unitarity condition \eqref{equation: K_matrix_unitarity}, one has also that:
+            \begin{equation} \label{equation: type_A_multiplicative_boundary_monodromy_matrices_unitarity}
+                B(z) B(z^{-1}) = 1
+            \end{equation}
+        which is also referred to as \textbf{unitarity}.
         
         Next, by fixing a solution \eqref{equation: type_A_multiplicative_boundary_monodromy_matrices} to a reflection equation (or equivalently, fixing a universal K-matrix $\calK(z)$), one can define a subalgebra of $\calU_{\hbar}(\calR)$ generated by the coefficients of the matrix entries of the series $B(z)$, typically called a \textbf{reflection algebra} and denoted by:
             $$\calB_{\hbar}(\calK)$$
-        \textit{A priori}, there are two possibilities:
+        It is well-known that $\calB_{\hbar}(\calK)$ is a right-coideal subalgebra of the quantum loop algebra $\calU_{\hbar}^{\calR}(\Loop \bar{\g})$, i.e.:
+            $$\Delta( \calB_{\hbar}(\calK) ) \subset \calB_{\hbar}(\calK) \tensor \calU_{\hbar}(\calR)$$
+        and hence also a right-coideal subalgebra of $\calU_{\hbar}^{\KM}(\Loop \bar{\g})$ in particular.
+            
+        Reflection algebras come in two types, the so-called \textbf{type I} and \textbf{type II}, for a lack of better terminologies. They are as follows.
         \begin{enumerate}
             \item In the first case, we have that:
                 $$B(z) \in \End(\bbV_N) \tensor \calU_{\hbar}^-(\calR)[\![z^{-1}]\!] \quad \text{or} \quad B(z) \in \End(\bbV_N) \tensor \calU_{\hbar}^+(\calR)[\![z]\!]$$
@@ -53,7 +60,16 @@
                 $$B(z) = L^-(z) \calK(z) L^+(z^{-1})^t \in \End(\bbV_N) \tensor \calU_{\hbar}(\calR)[\![z^{-1}]\!]$$
             Note that both the generating matrices $L^-(z), L^+(z^{-1})$ appear in the expression above for $B(z)$, but both depend on $z^{-1}$, $B(z)$ ultimately depends only on $z^{-1}$.
         \end{enumerate}
-        For a lack of better terminologies, let us refer to the reflection algebras (as well as their defining universal K-matrices) in the two cases above as being of \textbf{type I} and \textbf{type II}, respectively. We would also like to be make it clear, that despite what the examples above may have suggested, whether the reflection algebra $\calB_{\hbar}(\calK)$ is of the first or second kind actually my not depend only on the type of the solution $\calR$ to the QYBE (and hence the type of the solution $\calK$ to the bQYBE). Rather, this is controlled by an automorphism on the classical limit of $\calU_{\hbar}(\calR)$. More curiously still, it is known that reflection algebras of type II can \say{degenerate} to reflection algebras of type I: for example, Conner and Guay demonstrated that by specialising $q \to 1$ in a sense, the twisted $q$-Yangians of types $\sfA.1$ and $\sfA.2$ from \cite{molev_ragoucy_sorba_twisted_q_yangians_type_A} (which are of type II) degenerates to the usual rational twisted Yangians of types $\sfA.1$ and $\sfA.2$ as in \cite[Chapter 2]{molev_yangians_and_classical_lie_algebras} (which are of type I).
+        We would like to be make it clear, that despite what the examples above may have suggested, whether the reflection algebra $\calB_{\hbar}(\calK)$ is of the first or second kind actually my not depend only on the type of the solution $\calR$ to the QYBE (and hence the type of the solution $\calK$ to the bQYBE). Rather, this is controlled by a (pseudo-)involutive automorphism:
+            $$\vartheta$$
+        on the classical limit $\g(\calr)$. This induces an automorphism on the set of Kac-Moody-style generators of $\calU_{\hbar}^{\KM}(\Loop \bar{\g})$, and therefore there exists an $\i$quantum group associated to the aforementioned automorphism $\vartheta$, which we denote by:
+            $$\calU_{\hbar}^{\KM}(\Loop \bar{\g}, \vartheta)$$
+        Its classical limit is the the fixed point subalgebra:
+            $$(\Loop \bar{\g})^{\vartheta}$$
+
+        \begin{remark}
+            More curiously still, it is known that reflection algebras of type II can \say{degenerate} to reflection algebras of type I: for example, Conner and Guay demonstrated that by specialising $q \to 1$ in a sense, the twisted $q$-Yangians of types $\sfA.1$ and $\sfA.2$ from \cite{molev_ragoucy_sorba_twisted_q_yangians_type_A} (which are of type II) degenerates to the usual rational twisted Yangians of types $\sfA.1$ and $\sfA.2$ as in \cite[Chapter 2]{molev_yangians_and_classical_lie_algebras} (which are of type I).
+        \end{remark}
 
     \subsection{\texorpdfstring{Free boson realisation for QSPs in $\calU_{\hbar}(\hat{\sl}_2)$}{}}
 

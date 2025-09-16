@@ -1,6 +1,68 @@
 \section{Introduction}
-    \subsection{Notations}
+    \subsection{Notations and terminologies}
+        Given any formal distribution:
+            $$a(z) := \sum_{n \in \Z} a_n z^{-n}$$
+        let us write:
+            $$a(z)^- := \sum_{n > 0} a_m z^{-n} \quad, \quad a(z)^+ := \sum_{n \leq 0} a_n z^{-n}$$
+        for the negative and positive halves, respectively, with the indexing sets for the two sub-series being chosen so that we would have:
+            $$(\del_z a(z))^{\pm} = \del_z( a(z)^{\pm} ) \quad, \quad \del_z := \frac{d}{dz}$$
+        These notations will usually be used for generating series. Also, for the formal Dirac distribution around $z = w$, we write:
+            $$\1(zw^{-1}) := \sum_{n \in \Z} z^n w^{-n} \in \bbC[\![z^{\pm 1}, w^{\pm 1}]\!]$$
+        (cf. \cite[p. 65]{jimbo_miwa_algebraic_analysis_of_solvable_lattice_models}), and it is useful to note that in the region $\abs{z} < \abs{w}$, we have $\1(zw^{-1}) := \sum_{n > 0} z^n w^{-n} = -1 + \frac{1}{1 - zw^{-1}} = \frac{z}{z - w}$, while in the region $\abs{z} > \abs{w}$, we have $\1(zw^{-1})^+ := \sum_{n \leq 0} z^n w^{-n} = \frac{1}{1 - z^{-1}w} = \frac{z}{z - w}$.
 
-    \subsection{Context}
+        By \say{QYBE}, we mean the \say{quantum Yang-Baxter equation}, while by \say{bQYBE}, we mean a \say{boundary quantum Yang-Baxter equation}; bQYBEs come in many types, but two are of particular interest to us, namely the so-called untransposed and transposed ones (also called the untwisted and twisted bQYBEs). bQYBEs are also sometimes called reflection equations, though for us these two terms will be used to refer to two similar, but different, types of equations. Solutions to QYBEs are called \textbf{R-matrices}, while solutions to bQYBEs are called \textbf{K-matrices}, and we note that in order to even write down a bQYBE with solutions that we denote by $\calK$, it is necessary to first of all fix a solution\footnote{... or in fact, several such solutions, but we are not interested in such case.} $\calR$ to the QYBE (see \cite[Section 6]{regelskis_vlaar_reflection_matrices_coideal_subalgebras} for more details). Associated to R-matrices, via the FRT formalism, are \say{quantum algebras} or \say{quantum groups}, while quantum (pseudo-)symmetric pairs arise from K-matrices.
+
+        For simplicity, let us refer to both quantum symmetric pairs and quantum pseudo-symmetric pairs (in the sense of \cite{regelskis_vlaar_kac_moody_pseudo_symmetric_pairs}) as \say{quantum symmetric pairs} and abbreviate the term by \say{QSP}. When there is a need to specify the presentation of the QSPs at play, the QSPs that arise from reflection equations\footnote{... either untransposed or transposed.} (and hence ultimately from K-matrices; e.g. as in \cite{molev_ragoucy_sorba_twisted_q_yangians_type_A} or \cite{guay_regelskis_twisted_yangians_for_symmetric_pairs_of_types_BCD}) shall be referred to as \say{reflection algebras}, while those given by Kac-Moody-style generators satisfying Chevalley-Serre-type relations and those given by means of Drinfeld currents (such as the QSPs in \cite{regelskis_vlaar_reflection_matrices_coideal_subalgebras}, and in \cite{lu_wang_drinfeld_current_presentation_for_affine_iQUEs_1} and \cite{zhang_drinfeld_current_presentation_for_affine_iQUEs_2}) shall be referred to as \say{$\i$quantum groups}. This distinction is needed because the latter type does not seem to have an agreed-upon name in the literature, though the term \say{$\i$quantum group} seems to be the next best thing. Otherwise, we shall keep to the standard terminologies, e.g. \say{twisted $q$-Yangians}, \say{twisted Yangians}, etc.
+
+    \subsection{Goal}
+        Suppose that $\g$ is a Kac-Moody algebra of an affine type $\sfX$, with underlying finite-type Lie algebra $\bar{\g}$, and let $\calU_{\hbar}(\g)$ be the quantum Kac-Moody algebra as in \cite{etingof_kazhdan_quantisation_6}, with universal R-matrix $\calR$. Let $\Loop \bar{\g} := \bar{\g} \tensor \bbC[t^{\pm 1}]$.
         
-    \subsection{Overview}
+        Suppose that $\calK(z)$ is a solution to a trigonometric bQYBE, untransposed or transposed, and suppose that $\vartheta$ is the associated automorphism on the Dynkin diagram of $\g$, which \textit{a priori} extends to an automorphism of $\Loop \bar{\g}$. The central questions that we are trying to answer is the following:
+        \begin{question}
+            Is there an isomorphism of coideal subalgebras of $\calU_{\hbar}(\g)$ (in the R-matrix and Kac-Moody presentations, respectively):
+                $$\calB_{\hbar}(\calK) \cong \calU_{\hbar}^{\KM}(\Loop \bar{\g}, \vartheta)$$
+            between the reflection algebra $\calB_{\hbar}(\calK)$ defined by $\calK(z)$ and the $\i$quantum group $\calU_{\hbar}^{\KM}(\Loop \bar{\g}, \vartheta)$ quantising the fixed point subalgebra $(\Loop \bar{\g})^{\vartheta}$, for \textit{all} affine types $\sfX$, even the twisted types\footnote{... in which case the loop algebra $\Loop \bar{\g}$ will have to be replaced by an twisted version, but we will worry about this later.}?
+        \end{question}
+        \begin{question}
+            Is the isomorphism above compatible with rational degeneration ?
+        \end{question}
+        
+        We believe that the questions above have answers in the affirmative in general, but for now we shall focus on the case when:
+            $$\bar{\g} = \sl_2$$
+        as a proof of concept. In particular, we will be focusing on the cases when the K-matrix is of type $\sfA.1, \sfA.2, \sfA.3$ and thus are diagonal, and the K-matrix of the $q$-Onsager algebra (corresponding to when $\vartheta$ is the Chevalley involution), which is the simplest non-diagonal K-matrix.
+        \begin{remark} \label{remark: untwisted_affine_K_matrices_are_diagonalisable}
+            On \cite[p. 60]{regelskis_vlaar_reflection_matrices_coideal_subalgebras}, it has been conjectured that when $\sfX$ is an \textit{untwisted} affine type, all solutions $\calK_{\trigonometric}(z)$ of the untransposed and transposed bQYBEs are diagonalisable. The strategy outlined below depends heavily on this conjecture being true. At the moment, it is not clear how to deal with non-diagonalisable K-matrices.
+
+            Additionally, the aforementioned conjecture on the diagonalisability of K-matrices depends on \cite[Theorem 9.3]{regelskis_vlaar_reflection_matrices_coideal_subalgebras}, which listed explicit formulae for K-matrices in all affine types. While it is stated as a theorem, this result actually remains a conjecture for spin chains with $N > 15$ particles, and was verified numerically using \url{Mathematica} for $1 \leq N \leq 15$ (cf. Remark 9.4 of \textit{loc. cit.}). For this reason, we have deliberately avoided relying on the explicit formulae for the K-matrices in our approach. Instead, we are concerned only with the property of being diagonalisable, which we believe to be a weaker conjecture, and should be true for a fairly large class of K-matrices anyway.
+        \end{remark}
+
+    \subsection{Strategy}
+        We shall be using a (bosonic) Fock space method in order to achieve the goal stated above. Let us explain what this means. ALso, we keep the notations from the previous subsection.
+    
+        We subscribe to the perspective of Pakuliak in \cite{pakuliak_bosonisation_of_L_operators_for_quantum_affine_sl_2}, which is that it is more natural to firstly realise the operators:
+            $$L^{\pm}(z) \in \End(\bbV_N) \tensor \calU_{\hbar}^{\calR}(\g)[\![z^{\pm 1}]\!]$$
+        in terms of free fields, and then derive the free field realisations of the Drinfeld currents generating $\calU_{\hbar}^{\current}(\g)$, as well as the Ding-Frenkel isomorphism $\DF: \calU_{\hbar}^{\calR}(\g) \xrightarrow[]{\cong} \calU_{\hbar}^{\current}(\g)$, as corollaries. Mathematically speaking, this is to say that we would like to give an algebra embedding:
+            $$\freeboson_{\hbar}^{\calR}: \calU_{\hbar}^{\calR}(\g) \to \boson_{\hbar}^{\calR}(\g)$$
+        of the symmetry algebra $\calU_{\hbar}^{\calR}(\g)$ into a so-called \say{deformed oscillator algebra} $\boson_{\hbar}^{\calR}(\g)$, generated by a pair of creation and annihilation operators:
+            $$\alpha^{\pm}(z) \in \End(\bbV_N) \tensor \boson_{\hbar}^{\calR}(\g)[\![z^{\pm 1}]\!]$$
+        that obey Heisenberg-Weyl-type relations; we shall explain the role of the parameter $\level \in \bbC$ later. Physically speaking, $\boson_{\hbar}^{\calR}(\g)$ describes a quantum harmonic oscillator in which particles are created and annihilated by means of raising and lowering energy levels, respectively, though those particles may not yet obey any symmetry, so what we are trying to do is to impose the $\calU_{\hbar}^{\calR}(\g)$-symmetry onto said quantum harmonic oscillator. Let:
+            $$\vacuum(\boson_{\hbar}^{\calR}(\g))$$
+        denote the left-$\boson_{\hbar}^{\calR}(\g)$-module on which all the coefficients of the matrix entries of $\alpha^-(z)$ act by $0$, commonly called the \say{(deformed) bosonic Fock space} associated to the R-matrix $\calR$. There is an evident surjective left-$\boson_{\hbar}^{\calR}(\g)$-module homomorphism $\boson_{\hbar}^{\calR}(\g) \to \vacuum_{\level}(\boson_{\hbar}^{\calR}(\g))$; the image $\ket{0}$ of $1 \in \boson_{\hbar}^{\calR}(\g)$ under this homomorphism is known as the \say{vacuum vector}.
+         
+        Then, by restriction, we shall be able to give an embedding:
+            $$\freeboson_{\hbar}^{\calK}: \calB_{\hbar}(\calK) \to \boson_{\hbar}^{\calR}(\g)$$
+        This induces an action of the generating matrix of the reflection algebra $\calB_{\hbar}(\calK)$:
+            $$B(z) \in \End(\bbV_N) \tensor \calB_{\hbar}(\calK)[\![z^{-1}]\!]$$
+        on the vacuum vector by:
+            $$B(z) \ket{0} = \calK(z) \ket{0}$$
+        as explained by Ragoucy in \cite{ragoucy_vertex_representations_of_reflection_algebras} (see also \cite{ragoucy_vertex_representations_of_R_matrix_quantum_groups}, for the notion of the so-called \say{well-bred vertex operators}). If we assume the conjecture by Regelskis-Vlaar mentioned in remark \ref{remark: untwisted_affine_K_matrices_are_diagonalisable}, regarding the diagonalisability of untwisted affine K-matrices, to be true, then we can infer through the above, that one can identify:
+            $$\calK(z)$$
+        via its eigenvalues. Of course, we are not suggesting that matrices (even invertible ones) can be determined completely by their eigenvalues in general, but in our particular situation here, the following can be done.
+
+        Suppose that $V$ is a finite-dimensional simple left-$\calB_{\hbar}(\calK)$-module. Such a module is highest-weight, and by finite-dimensionality, we ought to be able to embed:
+            $$V \subset \vacuum( \boson_{\hbar}^{\calR}(\g) )$$
+        in such a way that the highest-weight vector of $V$ is mapped to the vacuum vector $\ket{0}$. As we have that $B(z) \ket{0} = \calK(z) \ket{0}$, the eigenvalues of $\calK(z)$ can be identified with the highest weight of $V$, which is to be an $N$-tuple:
+            $$( \lambda_i(z) )_{1 \leq i \leq N}$$
+        of polynomials in $z$, such that the ratio between the terms (so-called Drinfeld polynomials) are to satisfy certain conditions (cf. e.g. \cite{guay_regelskis_wendlandt_representations_of_twisted_yangians_for_symmetric_pairs_of_types_BCD_1} and \cite{guay_regelskis_wendlandt_representations_of_twisted_yangians_for_symmetric_pairs_of_types_BCD_2}). It is expected that the finite-dimensional simple modules over $\calB_{\hbar}(\calK)$ can be classified in terms of conditions placed upon their highest weights, and in this manner, one can identify the type of the K-matrix $\calK(z)$ without having to write down an explicit formula for it. Now, the reader may have already noticed that there is a subtle (but very crucial) point of circularity in our reasoning here: in order to write down and classify finite-dimensional simple modules over $\calB_{\hbar}(\calK)$, we must already have known the explicit form of the K-matrix from before! Therefore, we propose instead to consider finite-dimensional simple modules over the $\i$quantum group $\calU_{\hbar}^{\KM}(\Loop \bar{\g}, \vartheta)$.
+
+        Unfortunately, only some preliminary work in the finite-type setting - notably by Watanabe - has been done towards a classification scheme for finite-dimensional simple modules over $\calU_{\hbar}^{\KM}(\Loop \bar{\g}, \vartheta)$, with the most detailed classifications being given only for finite-type $\i$quantum groups of type $\sfA$. Therefore, what is actually required of us here is to give a classification of finite-dimensional simple modules over affine-type $\i$quantum groups of type $\sfA$, with an eye towards the other classical types later on.
